@@ -9,7 +9,7 @@ PubQuiz::Application.routes.draw do
   get 'home/index'
 
   # resources
-  resources :users
+  # resources :users
 
   # Root route
   root 'home#index'

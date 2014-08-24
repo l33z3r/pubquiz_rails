@@ -46,3 +46,4 @@ spec/files/spec-services-excel*
 vendor/tmp/assets/assets/*
 tags
 .rvmrc
+/lib/templates
