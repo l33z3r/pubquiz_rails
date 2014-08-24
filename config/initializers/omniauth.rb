@@ -9,10 +9,8 @@ module OmniAuth
     class Facebook < OmniAuth::Strategies::OAuth2
       # Automatically set the access token coming from the url. Required for
       # proper PhoneGap support.
-      Rails.logger.warn '!!!!!!!!!!!!!!!!!'
-      def build_access_token_with_access_token_parameter
-        Rails.logger.info 'aaaaaaaaaaaaaaa!!!!!!!!!!!!!!!!!'
 
+      def build_access_token_with_access_token_parameter
         a_token = request.params['access_token']
         if a_token
           ::OAuth2::AccessToken.from_hash(

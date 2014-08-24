@@ -3,10 +3,11 @@ PubQuiz::Application.routes.draw do
   # User session management
   get '/auth/:provider/callback', to: 'sessions#create', as: 'signin'
   get '/auth/failure', to: redirect('/')
-  post '/signout', to: 'sessions#destroy', as: 'signout'
+  get '/signout', to: 'sessions#destroy', as: 'signout'
 
   # bespoke routes
   get 'home/index'
+  get 'how_it_works', to: 'home#how_it_works', as: :how_it_works
 
   # resources
   # resources :users

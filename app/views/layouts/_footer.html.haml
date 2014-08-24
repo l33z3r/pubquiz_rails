@@ -1,0 +1,23 @@
+%div{style: 'height: 60px;'}
+
+%nav.navbar.navbar-default.navbar-bottom.navbar-fixed-bottom{role: 'navigation'}
+
+  .container
+    %p.navbar-text.visible-xs.pull-left
+      &copy;
+      2014 PubQuiz.
+    %p.navbar-text.visible-xs.pull-right
+      =link_to 'help@', '#'
+
+    %p.navbar-text.hidden-xs.pull-left
+      Copyright &copy;
+      =Time.now.year
+      PubQuiz, all rights reserved.
+      %br/
+      Registered in Ireland.
+      =#render partial: 'layouts/ssl_cert'
+
+    %p.navbar-text.hidden-xs.pull-right
+      =link_to 'Privacy', '#'
+      \|
+      =link_to 'help@', '#'

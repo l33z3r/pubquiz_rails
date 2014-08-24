@@ -7,10 +7,11 @@ gem 'rails', '4.1.5'
 gem 'coffee-rails', '~> 4.0.1' # Use CoffeeScript for .js.coffee assets and views
 gem 'geocoder'
 gem 'haml-rails'  # a replacement system for HTML
+gem 'hashie'
+gem 'intercom-rails'
 gem 'jbuilder', '~> 2.1.3' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'omniauth-facebook', '1.4.0'
-gem 'protected_attributes' # allows 'attr_accessible' in Rails 4
 gem 'sass-rails', '~> 4.0.3' # Use SCSS for stylesheets
 gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'uglifier', '2.5.3' # Use Uglifier as compressor for JavaScript assets

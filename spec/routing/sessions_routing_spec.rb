@@ -8,7 +8,7 @@ describe SessionsController do
     end
 
     it 'routes to signout' do
-      post('/signout').should route_to('sessions#destroy')
+      get('/signout').should route_to('sessions#destroy')
     end
 
   end
