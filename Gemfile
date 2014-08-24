@@ -1,40 +1,60 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.5'
+ruby '2.1.2'
+gem 'rails', '4.1.5'
 
-gem 'mysql2'
-
-#to redirect logs to STDOUT for heroku
-gem 'rails_12factor', group: :production
-
+# Gems for all environments:
+gem 'coffee-rails', '~> 4.0.1' # Use CoffeeScript for .js.coffee assets and views
+gem 'geocoder'
+gem 'haml-rails'  # a replacement system for HTML
+gem 'jbuilder', '~> 2.1.3' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'omniauth-facebook', '1.4.0'
+gem 'protected_attributes' # allows 'attr_accessible' in Rails 4
+gem 'sass-rails', '~> 4.0.3' # Use SCSS for stylesheets
+gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'uglifier', '2.5.3' # Use Uglifier as compressor for JavaScript assets
+gem 'will_paginate' # manage long web pages
+gem 'will_paginate-bootstrap' # adds Bootstrap3 support to will_paginate
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.2'
+# Environment-specific gems:
+group :development do
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+end
 
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+group :test do
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+end
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  gem 'mysql2'
+  gem 'rspec-rails', '~> 2.99'
+  gem 'shoulda-callback-matchers'
+  gem 'shoulda-matchers'
+end
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+group :staging do
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+end
+
+group :production do
+
+end
+
+group :staging, :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', platforms: :ruby
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

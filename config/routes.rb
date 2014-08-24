@@ -1,14 +1,18 @@
 PubQuiz::Application.routes.draw do
-  get "home/index"
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+  # User session management
+  get '/auth/:provider/callback', to: 'sessions#create', as: 'signin'
+  get '/auth/failure', to: redirect('/')
+  post '/signout', to: 'sessions#destroy', as: 'signout'
+
+  # bespoke routes
+  get 'home/index'
+
+  # resources
+  resources :users
+
+  # Root route
   root 'home#index'
-
-  get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/')
-  post 'signout', to: 'sessions#destroy', as: 'signout'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
