@@ -4,7 +4,7 @@
     -if @page_title
       %title=@page_title
     -else
-      %title Pub Quiz
+      %title Table Quiz
     -if @seo_tags
       -@seo_tags.each do |seo_tag|
         %meta{name: seo_tag[:tag_name], content: seo_tag[:tag_value]}
@@ -22,10 +22,9 @@
     =render partial: 'layouts/google_analytics' if Rails.env.production?
   %body{class: @special_body_class ? @special_body_class : ''}
     =render partial: 'layouts/main_navbar'
-    .top-padding
+    %div{style: 'height:60px;'}
     =yield :jumbotron
     .container
-      %div{style: 'height:60px;'}
       -#cookie-holder
       =render partial: '/layouts/flash_message'
       .row

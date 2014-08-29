@@ -2,14 +2,14 @@
   .row
     .col-sm-12
       .page-header
-        %h1 PubQuiz
+        %h1 TableQuiz
         %p.lead Time to get started using the world's favourite table quiz app
 
 -else
   =content_for(:jumbotron) do
     .jumbotron
       .container
-        %h1 PubQuiz
+        %h1 TableQuiz
         %p Time for Serious Fun
 
   .row
@@ -23,6 +23,6 @@
         %p.text-muted QR Codes go here
     .col-sm-6
       .well.well-sm
-        %h1 Organise A PubQuiz
-        %p Organise a pub quiz - get started here
+        %h1 Organise A Table Quiz
+        %p Organise a table quiz - get started here
         %p=link_to 'Get Started &rarr;', how_it_works_url, class: 'btn btn-success'
