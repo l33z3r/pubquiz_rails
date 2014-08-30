@@ -4,6 +4,7 @@ PubQuiz::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create', as: 'signin'
   get '/auth/failure', to: redirect('/')
   get '/signout', to: 'sessions#destroy', as: 'signout'
+  get 'sessions/create'
 
   # bespoke routes
   get 'home/index'
@@ -11,6 +12,17 @@ PubQuiz::Application.routes.draw do
 
   # resources
   # resources :users
+
+  namespace :api do # for the iOS / Android apps
+    # Getting started / signed in / joined onto an event and team
+    resources :events, only: [:index, :show, :create]
+    resources :players, only: [:create]
+    resources :teams, only: [:index, :create, :update]
+
+    # playing
+    resources :game_statistics, only: [:index, :show]
+    resources :quiz_answers, only: [:create]
+  end
 
   # Root route
   root 'home#index'
@@ -63,4 +75,5 @@ PubQuiz::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

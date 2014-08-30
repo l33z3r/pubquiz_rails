@@ -1,5 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
+ENV['RACK_ENV'] ||= 'test'
+
 require 'factory_girl_rails' # suggested by stack overflow
 
 require File.expand_path('../../config/environment', __FILE__)
@@ -43,3 +45,16 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 end
+
+RACK_ENV = ENV['ENVIRONMENT'] ||= 'test'
+OmniAuth.config.test_mode = true
+omniauth_hash =
+        {provider: 'facebook',
+         uid: '12345',
+         info: {name: 'John Doe',
+                email: 'johndoe@email.com',
+                image: 'test.jpg'},
+         credentials: {token: 'testtoken234tsdf',
+                       expires_at: Time.parse('2015-12-31').to_i}}
+
+OmniAuth.config.add_mock(:facebook, omniauth_hash)
