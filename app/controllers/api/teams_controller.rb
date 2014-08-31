@@ -18,7 +18,7 @@ class Api::TeamsController < Api::BaseController
     # capture the app details
     # create a team
     # join the creator into the team
-    render json: {team_guid: 'ABCDE12345'}, status 201
+    render json: {team_guid: 'ABCDE12345'}, status: 201
   end
 
   def update # join
