@@ -19,9 +19,11 @@ class QuestionCategory < ActiveRecord::Base
 
   # relationships
   # todo belongs_to :country
+  has_many :child_categories, class_name: 'QuestionCategory', foreign_key: :question_category_id
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
   belongs_to :parent_category, class_name: 'QuestionCategory', foreign_key: :question_category_id
+  has_many :questions
 
   # validation
   validates :name, presence: true, uniqueness: true
@@ -44,7 +46,7 @@ class QuestionCategory < ActiveRecord::Base
 
   # instance methods
   def destroyable?
-    true # todo
+    self.questions.empty? && self.child_categories.empty?
   end
 
   protected

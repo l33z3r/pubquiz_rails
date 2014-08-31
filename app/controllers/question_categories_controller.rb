@@ -1,7 +1,5 @@
 class QuestionCategoriesController < ApplicationController
 
-  AVAILABLE_METHODS = %w(index)
-
   before_action :logged_in_required
   before_action :admin_required
   before_action :get_variables
@@ -32,7 +30,7 @@ class QuestionCategoriesController < ApplicationController
   end
 
   def update
-    params[:updated_by] = current_user.id
+    params[:question_category][:updated_by] = current_user.id
     if @question_category.update_attributes(allowed_params)
       flash[:success] = 'QuestionCategory was successfully updated'
       redirect_to question_categories_url

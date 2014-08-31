@@ -1,0 +1,32 @@
+.row
+  .col-md-12
+    .page-header
+      %h1 Questions
+.row
+  .col-md-12
+    =will_paginate @questions, renderer: BootstrapPagination::Rails
+    %table.table.table-striped.table-bordered
+      %tr
+        %th Visible text
+        %th Correct answer
+        %th Created by
+        %th Publicly visible
+        -if current_user.admin?
+          %th Approved by
+        %th
+      -@questions.each do |question|
+        %tr
+          %td=question.visible_text
+          %td=question.correct_answer.visible_text
+          %td=question.created_by
+          %td=question.publicly_visible
+          -if current_user.admin?
+            %td=question.approved_by
+          %td
+            =link_to 'View', question
+            =link_to 'Edit', edit_question_url(question)
+            -if question.destroyable? && current_user.admin?
+              =link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' }
+.row
+  .col-md-12
+    =link_to 'New', new_question_url, class: 'btn btn-success'

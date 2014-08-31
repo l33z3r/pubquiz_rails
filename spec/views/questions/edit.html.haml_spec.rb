@@ -12,7 +12,7 @@ describe "questions/edit" do
     ))
   end
 
-  it "renders the edit question form" do
+  xit "renders the edit question form" do
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers

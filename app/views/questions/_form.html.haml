@@ -1,0 +1,38 @@
+.row
+  .col-md-8.col-md-offset-2
+    =form_for(@question, html: {class: 'form-horizontal', role: 'form'}) do |f|
+      .well.well-sm
+        =render partial: '/layouts/error_messages', locals: {thing: @question, message: nil}
+        .form-group
+          =f.label :question_category_id, 'Category', class: 'control-label col-md-4'
+          .col-md-8
+            =f.collection_select :question_category_id, @question_categories, :id, :name, {prompt: 'Select...'}, {class: 'form-control'}
+        .form-group
+          =f.label :visible_text, 'The question', class: 'control-label col-md-4'
+          .col-md-8
+            =f.text_area :visible_text, height: 2, class: 'form-control'
+
+        -# empty answers go here
+        -counter = 0
+        =f.fields_for :question_answers do |answer|
+          -counter += 1
+          .form-group
+            =answer.label :visible_text, "Possible answer ##{counter}", class: 'control-label col-md-4'
+            .col-md-8
+              =answer.text_field :visible_text, class: 'form-control'
+              =answer.hidden_field :sorting_order, value: counter
+
+        .form-group
+          =f.label :correct_answer_id, class: 'control-label col-md-4'
+          .col-md-8
+            -if f.object.id.nil?
+              =f.select(:correct_answer_id, [['Answer 1',1], ['Answer 2',2], ['Answer 3',3], ['Answer 4',4]], {prompt: 'Please select...'}, {class: 'form-control'})
+            -else
+              =f.collection_select :correct_answer_id, @answers, :id, :visible_text, {prompt: 'Select...'}, {class: 'form-control'}
+        .form-group
+          =f.label :publicly_visible, 'Share with everyone', class: 'control-label col-md-4'
+          .col-md-8
+            =f.check_box :publicly_visible, class: 'form-control'
+      =f.submit 'Save', class: 'btn btn-success'
+      or
+      =link_to 'cancel', questions_path

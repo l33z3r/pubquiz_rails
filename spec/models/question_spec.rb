@@ -26,7 +26,8 @@ describe Question do
   #it { Question.const_defined?(:CONSTANT_NAME) }
 
   # relationships
-  xit { should belong_to(:correct_answer) }
+  it { should belong_to(:correct_answer) }
+  it { should have_many(:question_answers) }
   it { should belong_to(:question_category) }
 
   # validation
@@ -59,6 +60,4 @@ describe Question do
   # instance methods
   it { should respond_to(:destroyable?) }
   
-  skip "add some examples to (or delete) #{__FILE__}"
-
 end

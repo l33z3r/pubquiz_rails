@@ -24,6 +24,7 @@ PubQuiz::Application.routes.draw do
 
 
   # Standard resources-based routes
+  resources :questions
   resources :question_categories
   # resources :users
 

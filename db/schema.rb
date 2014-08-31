@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831184421) do
+ActiveRecord::Schema.define(version: 20140831202323) do
+
+  create_table "question_answers", force: true do |t|
+    t.integer  "question_id"
+    t.string   "visible_text"
+    t.integer  "sorting_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "question_categories", force: true do |t|
     t.string   "name"
@@ -22,6 +34,22 @@ ActiveRecord::Schema.define(version: 20140831184421) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "questions", force: true do |t|
+    t.integer  "question_category_id"
+    t.string   "visible_text"
+    t.integer  "correct_answer_id"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.boolean  "publicly_visible"
+    t.integer  "approved_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "quiz_events", force: true do |t|

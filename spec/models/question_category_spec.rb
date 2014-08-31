@@ -22,9 +22,11 @@ describe QuestionCategory do
 
   # relationships
   # todo it { should belong_to(:country) }
+  it { should have_many(:child_categories) }
   it { should belong_to(:creator) }
   it { should belong_to(:updater) }
   it { should belong_to(:parent_category) }
+  it { should have_many(:questions) }
 
   # validation
   it { should validate_presence_of(:name) }
