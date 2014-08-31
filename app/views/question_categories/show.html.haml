@@ -1,0 +1,31 @@
+.row
+  .col-md-12
+    .page-header
+      %h1
+        Question Category #
+        =@question_category.id
+.row
+  .col-md-12
+    %table.table.table-striped.table-bordered
+      %tr
+        %td.col-sm-4 Name
+        %td.col-sm-8=@question_category.name
+      %tr
+        %td.col-sm-4 Question category
+        %td.col-sm-8=@question_category.parent_category.try(:name)
+      %tr
+        %td.col-sm-4 Active
+        %td.col-sm-8=@question_category.active
+      %tr
+        %td.col-sm-4 Created by
+        %td.col-sm-8=@question_category.created_by
+      %tr
+        %td.col-sm-4 Updated by
+        %td.col-sm-8=@question_category.updated_by
+      %tr
+        %td.col-sm-4 Country
+        %td.col-sm-8=@question_category.country.try(:name)
+    %p
+      =link_to 'Back', question_categories_url
+      |
+      =link_to 'Edit', edit_question_category_url

@@ -1,0 +1,28 @@
+.row
+  .col-md-12
+    .page-header
+      %h1 Question Categories
+.row
+  .col-md-12
+    =will_paginate @question_categories, renderer: BootstrapPagination::Rails
+    %table.table.table-striped.table-bordered
+      %tr
+        %th Name
+        %th Question category
+        %th Active
+        %th Country
+        %th
+      -@question_categories.each do |question_category|
+        %tr
+          %td=question_category.name
+          %td=question_category.parent_category.try(:name)
+          %td=question_category.active
+          %td=question_category.country.try(:name)
+          %td
+            =link_to 'View', question_category
+            =link_to 'Edit', edit_question_category_url(question_category)
+            -if question_category.destroyable?
+              =link_to 'Delete', question_category, method: :delete, data: { confirm: 'Are you sure?' }
+.row
+  .col-md-12
+    =link_to 'New', new_question_category_url, class: 'btn btn-success'

@@ -10,8 +10,6 @@ PubQuiz::Application.routes.draw do
   get 'home/index'
   get 'how_it_works', to: 'home#how_it_works', as: :how_it_works
 
-  # resources
-  # resources :users
 
   namespace :api do # for the iOS / Android apps
     # Getting started / signed in / joined onto an event and team
@@ -23,6 +21,12 @@ PubQuiz::Application.routes.draw do
     resources :game_statistics, only: [:index, :show]
     resources :quiz_answers, only: [:create]
   end
+
+
+  # Standard resources-based routes
+  resources :question_categories
+  # resources :users
+
 
   # Root route
   root 'home#index'

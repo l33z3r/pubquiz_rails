@@ -34,7 +34,6 @@ class QuizEvent < ActiveRecord::Base
 
   # validation
   validates :name, presence: true
-  #validates :description, presence: true
   validates :time_zone, presence: true
   validates :starts_at, presence: true
   validates :venue_id, presence: true,

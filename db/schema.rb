@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831173403) do
+ActiveRecord::Schema.define(version: 20140831184421) do
+
+  create_table "question_categories", force: true do |t|
+    t.string   "name"
+    t.integer  "question_category_id"
+    t.boolean  "active"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.integer  "country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "quiz_events", force: true do |t|
     t.string   "name"

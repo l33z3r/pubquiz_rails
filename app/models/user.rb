@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
 
   OAUTH_PLATFORMS = %w(facebook) # twitter)
 
+  def admin?
+    self.uid == '10152680945978307' || self.email == 'l33z3r@gmail.com'
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth[:provider]

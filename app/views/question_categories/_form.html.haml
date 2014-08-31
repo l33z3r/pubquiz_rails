@@ -1,0 +1,24 @@
+.row
+  .col-md-8.col-md-offset-2
+    =form_for(@question_category, html: {class: 'form-horizontal', role: 'form'}) do |f|
+      .well.well-sm
+        =render partial: '/layouts/error_messages', locals: {thing: @question_category, message: nil}
+        .form-group
+          =f.label :name, class: 'control-label col-md-4'
+          .col-md-8
+            =f.text_field :name, class: 'form-control'
+        .form-group
+          =f.label :question_category_id, 'Part of category', class: 'control-label col-md-4'
+          .col-md-8
+            =f.collection_select :question_category_id, @question_categories, :id, :name, {prompt: 'Select...'}, {class: 'form-control'}
+        .form-group
+          =f.label :active, class: 'control-label col-md-4'
+          .col-md-8
+            =f.check_box :active, class: 'form-control'
+        .form-group
+          =f.label :country_id, class: 'control-label col-md-4'
+          .col-md-8
+            =f.collection_select :country_id, @countries, :id, :name, {prompt: 'Select...'}, {class: 'form-control'}
+      =f.submit 'Save', class: 'btn btn-success'
+      or
+      =link_to 'cancel', question_categories_path
