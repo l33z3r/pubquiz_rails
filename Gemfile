@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.1.3' # Build JSON APIs with ease. Read more: https://githu
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'omniauth-facebook', '1.4.0'
 gem 'paperclip', '~> 4.1' # processing images on upload
+gem 'rabl-rails'
 gem 'remotipart' # uploading images
 gem 'sass-rails', '~> 4.0.3' # Use SCSS for stylesheets
 gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
