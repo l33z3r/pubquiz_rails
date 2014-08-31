@@ -3,21 +3,23 @@ class Api::EventsController < Api::BaseController
   before_action :authentication_required
 
   def index # list all nearby events
-    params = {lat: 53.123, lon: -6.123, accuracy: 10}
+    # sample URL:
+    # http://localhost:3000/api/events?lat=53.5&lon=-6.0&accuracy=100
+    #
     # Find a list of possible events based on lat/lon or request.ip_address, and the current time
-    render json: {events: [
-            {name: 'Weekly table quiz', starts_at_epoch: 1409360642,
-             description: 'Lorem ipsum 1', time_zone_offset_minutes: 60, in_dst: true,
-             location: "Tippsy McStagger's Good-Time Emporium",
-             address: '123 Fake Street, Springfield', event_guid: 'ABC123'},
-            {name: 'Fundraiser for Duff Man', starts_at_epoch: 1409360642,
-             description: 'Lorem ipsum 2',
-             location: "Moe's Tavern", time_zone_offset_minutes: 60, in_dst: true,
-             address: 'Evergreen Terrace, Springfield', event_guid: 'ABC456'}
-    ]}, status: 200
+    range_in_degrees = (params[:accuracy] || 5).to_f * 0.01 # 0.1 will need fine-tuning later
+    if params[:lat].to_f == 0.0 && params[:lon].to_f == 0.0
+      @events = nil
+      render json: {}, status: 404
+    else
+      @events = QuizEvent.near(params[:lat].to_f, params[:lon].to_f, range_in_degrees).happening_soon
+      render 'api/events/index.json.rabl', status: 200
+    end
   end
 
   def show
+    # sample URL
+    # http://localhost:3000/api/events/WKZEDcEP
     params = {id: 'ABC123'} # event_guid
     if current_user # is registered in the event AND it's within 15 minutes of the start time
     render json: {

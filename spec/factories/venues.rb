@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: quiz_events
+# Table name: venues
 #
 #  id                :integer          not null, primary key
-#  name              :string(255)
-#  description       :text
-#  time_zone         :string(255)
-#  starts_at         :datetime
-#  venue_id          :integer
+#  public_title      :string(255)
+#  address           :text
+#  latitude          :float(24)
+#  longitude         :float(24)
 #  created_by        :integer
 #  updated_by        :integer
-#  event_guid        :string(255)
-#  sponsor_logo_url  :string(255)
+#  publicly_visible  :boolean
+#  approved_by       :integer
+#  time_zone         :string(255)
 #  created_at        :datetime
 #  updated_at        :datetime
 #  logo_file_name    :string(255)
@@ -23,15 +23,15 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :quiz_event do
-    name "MyString"
-    description "MyText"
-    time_zone "MyString"
-    starts_at "2014-08-30 23:33:12"
-    venue_id 1
+  factory :venue do
+    public_title "MyString"
+    address "MyText"
+    latitude 1.5
+    longitude 1.5
     created_by 1
     updated_by 1
-    event_guid "MyString"
-    sponsor_logo_url "MyString"
+    publicly_visible false
+    approved_by 1
+    time_zone "MyString"
   end
 end

@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: quiz_events
+#
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  description       :text
+#  time_zone         :string(255)
+#  starts_at         :datetime
+#  venue_id          :integer
+#  created_by        :integer
+#  updated_by        :integer
+#  event_guid        :string(255)
+#  sponsor_logo_url  :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#  logo_file_name    :string(255)
+#  logo_content_type :string(255)
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
+#
+
 require 'spec_helper'
 
 describe QuizEvent do
@@ -8,7 +30,7 @@ describe QuizEvent do
   # relationships
   it { should belong_to(:creator) }
   it { should belong_to(:updater) }
-  xit { should belong_to(:venue) }
+  it { should belong_to(:venue) }
 
   # validation
   it { should validate_presence_of(:name) }
@@ -39,5 +61,8 @@ describe QuizEvent do
   
   # instance methods
   it { should respond_to(:destroyable?) }
-  
+  it { should respond_to(:in_dst) }
+  it { should respond_to(:starts_at_epoch) }
+  it { should respond_to(:time_zone_offset_minutes) }
+
 end

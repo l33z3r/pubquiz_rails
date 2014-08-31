@@ -1,13 +1,36 @@
+# == Schema Information
+#
+# Table name: quiz_events
+#
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  description       :text
+#  time_zone         :string(255)
+#  starts_at         :datetime
+#  venue_id          :integer
+#  created_by        :integer
+#  updated_by        :integer
+#  event_guid        :string(255)
+#  sponsor_logo_url  :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#  logo_file_name    :string(255)
+#  logo_content_type :string(255)
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
+#
+
 class QuizEvent < ActiveRecord::Base
 
   has_attached_file :logo
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
 
   # Constants
 
   # relationships
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
-  #belongs_to :venue
+  belongs_to :venue
 
   # validation
   validates :name, presence: true
@@ -28,6 +51,10 @@ class QuizEvent < ActiveRecord::Base
 
   # scopes
   scope :all_in_order, -> { order(:name) }
+  scope :happening_soon, -> { where('starts_at > ? AND starts_at < ?',
+                                    Proc.new{Time.now - 2.hours}.call,
+                                    Proc.new{Time.now + 1.day}.call ) }
+  scope :near, lambda {|lat, lon, range| where(venue_id: Venue.find_near_to(lat, lon, range).map(&:id)) }
 
   # class methods
 
@@ -36,11 +63,25 @@ class QuizEvent < ActiveRecord::Base
     true # todo
   end
 
+  def in_dst
+    # returns true or false
+    original_time_zone = Time.zone
+    Time.zone = self.time_zone
+    answer = Time.zone.at(self.starts_at).dst?
+    Time.zone = original_time_zone
+    answer
+  end
+
   def starts_at_epoch
     self.starts_at.to_i
   end
 
   def time_zone_offset_minutes
+    original_time_zone = Time.zone
+    Time.zone = self.time_zone
+    answer = Time.zone.at(self.starts_at).utc_offset
+    Time.zone = original_time_zone
+    answer / 60
   end
 
   protected
