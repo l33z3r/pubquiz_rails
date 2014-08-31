@@ -1,5 +1,7 @@
 class Api::PlayersController < Api::BaseController
 
+  respond_to :json
+
   before_action :authentication_required, except: [:create]
 
   def create

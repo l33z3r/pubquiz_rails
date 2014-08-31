@@ -1,5 +1,7 @@
 class Api::EventsController < Api::BaseController
 
+  respond_to :json
+
   before_action :authentication_required
 
   def index # list all nearby events

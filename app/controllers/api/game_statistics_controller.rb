@@ -1,5 +1,7 @@
 class Api::GameStatisticsController < Api::BaseController
 
+  respond_to :json
+
   before_action :authentication_required
 
   def index
