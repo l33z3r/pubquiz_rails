@@ -18,7 +18,7 @@ class QuestionCategory < ActiveRecord::Base
   # Constants
 
   # relationships
-  # todo belongs_to :country
+  belongs_to :country
   has_many :child_categories, class_name: 'QuestionCategory', foreign_key: :question_category_id
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by

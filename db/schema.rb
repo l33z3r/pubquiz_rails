@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831202323) do
+ActiveRecord::Schema.define(version: 20140901111159) do
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.boolean  "in_the_eu"
+    t.integer  "currency_id"
+    t.integer  "sorting_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "question_answers", force: true do |t|
     t.integer  "question_id"
@@ -68,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140831202323) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.boolean  "open_to_the_public"
   end
 
   create_table "users", force: true do |t|

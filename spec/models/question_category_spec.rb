@@ -21,7 +21,7 @@ describe QuestionCategory do
   #it { QuestionCategory.const_defined?(:CONSTANT_NAME) }
 
   # relationships
-  # todo it { should belong_to(:country) }
+  it { should belong_to(:country) }
   it { should have_many(:child_categories) }
   it { should belong_to(:creator) }
   it { should belong_to(:updater) }

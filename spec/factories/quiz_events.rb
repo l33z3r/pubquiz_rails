@@ -2,22 +2,23 @@
 #
 # Table name: quiz_events
 #
-#  id                :integer          not null, primary key
-#  name              :string(255)
-#  description       :text
-#  time_zone         :string(255)
-#  starts_at         :datetime
-#  venue_id          :integer
-#  created_by        :integer
-#  updated_by        :integer
-#  event_guid        :string(255)
-#  sponsor_logo_url  :string(255)
-#  created_at        :datetime
-#  updated_at        :datetime
-#  logo_file_name    :string(255)
-#  logo_content_type :string(255)
-#  logo_file_size    :integer
-#  logo_updated_at   :datetime
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  description        :text
+#  time_zone          :string(255)
+#  starts_at          :datetime
+#  venue_id           :integer
+#  created_by         :integer
+#  updated_by         :integer
+#  event_guid         :string(255)
+#  sponsor_logo_url   :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  logo_file_name     :string(255)
+#  logo_content_type  :string(255)
+#  logo_file_size     :integer
+#  logo_updated_at    :datetime
+#  open_to_the_public :boolean
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

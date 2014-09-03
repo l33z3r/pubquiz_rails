@@ -61,7 +61,7 @@ class QuestionsController < ApplicationController
       @question = Question.find(params[:id])
     end
     @question_categories = QuestionCategory.all_in_order
-    # @countries = Country.all_in_order
+    @countries = Country.all_in_order
   end
 
   def allowed_params

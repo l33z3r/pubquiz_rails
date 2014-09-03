@@ -24,6 +24,7 @@ PubQuiz::Application.routes.draw do
 
 
   # Standard resources-based routes
+  resources :countries
   resources :questions
   resources :question_categories
   # resources :users
@@ -31,6 +32,7 @@ PubQuiz::Application.routes.draw do
 
   # Root route
   root 'home#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
