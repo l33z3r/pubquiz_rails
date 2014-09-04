@@ -1,4 +1,4 @@
-class Api::QuizAnswers < Api::BaseController
+class Api::V1::QuizAnswers < Api::V1::BaseController
 
   respond_to :json
 

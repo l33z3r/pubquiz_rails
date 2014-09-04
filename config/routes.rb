@@ -12,14 +12,16 @@ PubQuiz::Application.routes.draw do
 
 
   namespace :api do # for the iOS / Android apps
-    # Getting started / signed in / joined onto an event and team
-    resources :events, only: [:index, :show, :create]
-    resources :players, only: [:create]
-    resources :teams, only: [:index, :create, :update]
+    namespace :v1 do
+      # Getting started / signed in / joined onto an event and team
+      resources :quiz_events, only: [:index, :show, :create]
+      resources :players, only: [:create]
+      resources :teams, only: [:index, :create, :update]
 
-    # playing
-    resources :game_statistics, only: [:index, :show]
-    resources :quiz_answers, only: [:create]
+      # playing
+      resources :game_statistics, only: [:index, :show]
+      resources :quiz_answers, only: [:create]
+    end
   end
 
 

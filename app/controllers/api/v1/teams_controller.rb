@@ -1,4 +1,4 @@
-class Api::TeamsController < Api::BaseController
+class Api::V1::TeamsController < Api::V1::BaseController
 
   respond_to :json
 

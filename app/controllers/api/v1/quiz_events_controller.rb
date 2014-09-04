@@ -1,4 +1,4 @@
-class Api::EventsController < Api::BaseController
+class Api::V1::QuizEventsController < Api::V1::BaseController
 
   respond_to :json
 
@@ -25,10 +25,6 @@ class Api::EventsController < Api::BaseController
     params = {id: 'ABC123'} # event_guid
     if current_user # is registered in the event AND it's within 15 minutes of the start time
     render json: {
-            teams: [
-                    {team_name: 'Frank Moss'},
-                    {team_name: 'Jim Henderson'}
-            ],
             rounds: [
                     {running_order: 10, name: 'Lorem ipsum',
                      category_name: 'Formula 1', id: 123},

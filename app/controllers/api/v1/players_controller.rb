@@ -1,4 +1,4 @@
-class Api::PlayersController < Api::BaseController
+class Api::V1::PlayersController < Api::V1::BaseController
 
   respond_to :json
 
