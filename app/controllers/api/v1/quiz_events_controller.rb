@@ -25,41 +25,40 @@ class Api::V1::QuizEventsController < Api::V1::BaseController
     params = {id: 'ABC123'} # event_guid
     if current_user # is registered in the event AND it's within 15 minutes of the start time
     render json: {
-            rounds: [
-                    {running_order: 10, name: 'Lorem ipsum',
-                     category_name: 'Formula 1', id: 123},
-                    {running_order: 20, name: 'Lorem ipsum',
-                     category_name: 'Premiership', id: 124},
-                    {running_order: 30, name: 'Lorem ipsum',
-                     category_name: 'General Knowledge', id: 125}
-            ],
-            questions: [
-                    {quiz_round_question_id: 1234567,
-                     round_id: 123,
-                     sorting_order: 10,
-                     visible_text: "Who is Alonso's team mate at Ferrari in 2013?",
-                     answers: [
-                             {visible_text: 'Filipe Masse', id: 123},
-                             {visible_text: 'Foghorn Leghorn', id: 124},
-                             {visible_text: 'Chilton Pike', id: 125},
-                             {visible_text: 'Michael Schumaker', id: 126},
-                     ],
-                     time_limit_seconds: 10,
-                     points_available: 20
-                    },
-                    {quiz_round_question_id: 9876543,
-                     round_id: 123,
-                     sorting_order: 20,
-                     visible_text: "Who was Alonso's team mate at Ferrari in 2013?",
-                     answers: [
-                             {visible_text: 'Filipe Masse', id: 127},
-                             {visible_text: 'Filipe Hasse', id: 128},
-                             {visible_text: 'Filipe Tasse', id: 129},
-                             {visible_text: 'Filipe Basse', id: 130}
-                     ],
-                     time_limit_seconds: 10,
-                     points_available: 20}
-            ]
+            quiz_event: {
+                    name: 'The name of the event',
+                    time_zone: 'Dublin',
+                    starts_at: event.starts_at.to_i,
+                    venue_id: 123,
+                    event_guid: 'Something',
+                    sponsor_logo_url: 'Something',
+                    open_to_the_public: true,
+                    quiz_rounds: [
+                            {id: 123, sorting_order: 10, name: 'Lorem ipsum',
+                             quiz_round_question_ids: [1, 2, 3]},
+                            {id: 456, sorting_order: 20, name: 'Lorem ipsum',
+                             quiz_round_question_ids: [4, 5, 6]},
+                            {id: 789, sorting_order: 30, name: 'Lorem ipsum',
+                             quiz_round_question_ids: [7, 8, 9]}
+                    ],
+                    quiz_round_question: [
+                          {id: 1234567,
+                           question_id: 1234567,
+                           quiz_round_id: 123,
+                           sorting_order: 10,
+                           visible_text: "Who is Alonso's team mate at Ferrari in 2013?",
+                           question_answers: [
+                                   {visible_text: 'Filipe Masse', id: 123},
+                                   {visible_text: 'Foghorn Leghorn', id: 124},
+                                   {visible_text: 'Chilton Pike', id: 125},
+                                   {visible_text: 'Michael Schumaker', id: 126},
+                           ],
+                           time_limit_seconds: 10,
+                           points_available: 20
+                          },
+                          # etc.
+                  ]
+          }
     }, status: 200
     elsif current_user #is in the team
       # it's too early
@@ -70,18 +69,6 @@ class Api::V1::QuizEventsController < Api::V1::BaseController
       Rails.logger.error 'API:EventsController#Show error 406 player not linked to event' # todo
       render json: {}, status: 406 # not acceptable
     end
-  end
-
-  def create # join an event
-    params = {id: 'ABC123'} # event_guid
-    # find event using event_id
-    # register the user into the event
-    # if it went ok
-      render json: {}, status: 201
-    # else
-      Rails.logger.error 'API:EventsController#create error 422 failed to link user to event: ' # todo
-      render json: {}, status: 422
-    # end
   end
 
 end
