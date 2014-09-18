@@ -5,7 +5,7 @@ class Api::V1::GameStatisticsController < Api::V1::BaseController
   before_action :authentication_required
 
   def index
-    params = {event_guid: 'ABC123'}
+    sample_params = {event_guid: 'ABC123'}
     # get statistics for the entire event
     # if game is has started and has not finished > 24 hours ago
       render json: {

@@ -17,11 +17,11 @@
       -@questions.each do |question|
         %tr
           %td=question.visible_text
-          %td=question.correct_answer.visible_text
-          %td=question.created_by
+          %td=question.correct_answer.try(:visible_text)
+          %td=question.creator.try(:full_name)
           %td=question.publicly_visible
           -if current_user.admin?
-            %td=question.approved_by
+            %td=question.approver.try(:full_name)
           %td
             =link_to 'View', question
             =link_to 'Edit', edit_question_url(question)

@@ -12,19 +12,19 @@
         %td.col-sm-8=@question.visible_text
       %tr
         %td.col-sm-4 Correct answer
-        %td.col-sm-8=@question.correct_answer.name
+        %td.col-sm-8=@question.correct_answer.try(:name)
       %tr
         %td.col-sm-4 Created by
-        %td.col-sm-8=@question.created_by
+        %td.col-sm-8=@question.creator.try(:full_name)
       %tr
         %td.col-sm-4 Updated by
-        %td.col-sm-8=@question.updated_by
+        %td.col-sm-8=@question.updater.try(:full_name)
       %tr
         %td.col-sm-4 Publicly visible
         %td.col-sm-8=@question.publicly_visible
       %tr
         %td.col-sm-4 Approved by
-        %td.col-sm-8=@question.approved_by
+        %td.col-sm-8=@question.approver.try(:full_name)
     %p
       =link_to 'Back', questions_url
       |

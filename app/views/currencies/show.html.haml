@@ -1,0 +1,34 @@
+.row
+  .col-md-12
+    .page-header
+      %h1
+        Currency #
+        =@currency.id
+.row
+  .col-md-12
+    %table.table.table-striped.table-bordered
+      %tr
+        %td.col-sm-4 Name
+        %td.col-sm-8=@currency.name
+      %tr
+        %td.col-sm-4 Iso code
+        %td.col-sm-8=@currency.iso_code
+      %tr
+        %td.col-sm-4 Leading symbol
+        %td.col-sm-8=@currency.leading_symbol
+      %tr
+        %td.col-sm-4 Trailing symbol
+        %td.col-sm-8=@currency.trailing_symbol
+      %tr
+        %td.col-sm-4 Thousands separator
+        %td.col-sm-8=@currency.thousands_separator
+      %tr
+        %td.col-sm-4 Decimal separator
+        %td.col-sm-8=@currency.decimal_separator
+      %tr
+        %td.col-sm-4 Active
+        %td.col-sm-8=@currency.active
+    %p
+      =link_to 'Back', currencies_url
+      |
+      =link_to 'Edit', edit_currency_url

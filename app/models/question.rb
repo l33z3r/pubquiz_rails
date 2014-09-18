@@ -31,6 +31,9 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :question_answers, allow_destroy: true,
              reject_if: lambda {|attributes| attributes['visible_text'].blank?}
   belongs_to :question_category
+  belongs_to :creator, class_name: 'User', foreign_key: :created_by
+  belongs_to :updater, class_name: 'User', foreign_key: :updated_by
+  belongs_to :approver, class_name: 'User', foreign_key: :approved_by
 
   # validation
   validates :question_category_id, presence: true,

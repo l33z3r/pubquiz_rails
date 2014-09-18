@@ -15,7 +15,7 @@
         %tr
           %td=country.name
           %td=country.in_the_eu
-          %td=country.currency.name
+          %td=country.currency.try(:name)
           %td
             =link_to 'View', country
             =link_to 'Edit', edit_country_url(country)

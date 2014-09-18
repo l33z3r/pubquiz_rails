@@ -27,7 +27,6 @@ class QuestionsController < ApplicationController
     @question = Question.new(allowed_params)
     @question.created_by = current_user.id if current_user
     if @question.save
-      @question.update_attributes(correct_answer_id: @question.question_answers.where(sorting_order: @question.correct_answer_id).first.id)
       flash[:success] = 'Question was successfully created.'
       redirect_to questions_url
     else
@@ -59,6 +58,7 @@ class QuestionsController < ApplicationController
   def get_variables
     if params[:id].to_i > 0
       @question = Question.find(params[:id])
+      @answers = @question.question_answers
     end
     @question_categories = QuestionCategory.all_in_order
     @countries = Country.all_in_order

@@ -7,7 +7,7 @@ class CountriesController < ApplicationController
   before_action :get_variables
 
   def index
-    @countries = Country.all_in_order
+    @countries = Country.paginate(page: params[:page], per_page: 100).all_in_order
   end
 
   def show
@@ -22,7 +22,6 @@ class CountriesController < ApplicationController
 
   def create
     @country = Country.new(allowed_params)
-    @country.user_id = current_user.id if current_user
     if @country.save
       flash[:success] = 'Country was successfully created'
       redirect_to countries_url
@@ -55,11 +54,11 @@ class CountriesController < ApplicationController
     if params[:id].to_i > 0
       @country = Country.find(params[:id])
     end
-    # @countries = Country.all_in_order
+    @currencies = Currency.all_in_order
   end
 
   def allowed_params
-    params.require(:country).permit(:name, :in_the_eu, :currency_id)
+    params.require(:country).permit(:name, :in_the_eu, :currency_id, :sorting_order)
   end
 
 end

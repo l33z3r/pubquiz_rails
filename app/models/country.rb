@@ -16,7 +16,7 @@ class Country < ActiveRecord::Base
   # Constants
 
   # relationships
-  # todo belongs_to :currency
+  belongs_to :currency
   has_many :question_categories
 
   # validation

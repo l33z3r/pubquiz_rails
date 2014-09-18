@@ -15,14 +15,16 @@
 
 FactoryGirl.define do
   factory :country do
-    sequence(:name)   { |n| "MyString #{n}" }
+    sequence(:name)   { |n| "Country #{n}" }
     in_the_eu         true
     currency_id       1
+    sorting_order     10
   end
 
   factory :ireland, class: Country do
-    name             'ireland'
-    in_the_eu        true
-    currency_id      1
+    name              'Ireland'
+    in_the_eu         true
+    currency_id       1
+    sorting_order     353
   end
 end

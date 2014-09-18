@@ -22,11 +22,11 @@
 
 FactoryGirl.define do
   factory :question do
-    visible_text        'MyString'
-    correct_answer_id   1
-    created_by          1
-    updated_by          nil
-    publicly_visible    true
-    approved_by         1
+    question_category_id 1
+    visible_text         'MyString'
+    created_by           1
+    correct_answer_id    1
+    publicly_visible     true
+    approved_by          1
   end
 end

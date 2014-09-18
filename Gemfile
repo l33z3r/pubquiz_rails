@@ -4,6 +4,7 @@ ruby '2.1.2'
 gem 'rails', '4.1.5'
 
 # Gems for all environments:
+gem 'active_model_serializers', '~> 0.9'
 gem 'aws-sdk', '~> 1.42.0'
 gem 'coffee-rails', '~> 4.0.1' # Use CoffeeScript for .js.coffee assets and views
 gem 'geocoder'
@@ -14,7 +15,6 @@ gem 'jbuilder', '~> 2.1.3' # Build JSON APIs with ease. Read more: https://githu
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'omniauth-facebook', '1.4.0'
 gem 'paperclip', '~> 4.1' # processing images on upload
-gem 'rabl-rails'
 gem 'remotipart' # uploading images
 gem 'sass-rails', '~> 4.0.3' # Use SCSS for stylesheets
 gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

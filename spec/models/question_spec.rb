@@ -29,6 +29,9 @@ describe Question do
   it { should belong_to(:correct_answer) }
   it { should have_many(:question_answers) }
   it { should belong_to(:question_category) }
+  it { should belong_to(:creator) }
+  it { should belong_to(:updater) }
+  it { should belong_to(:approver) }
 
   # validation
   it { should validate_presence_of(:question_category_id) }

@@ -52,7 +52,7 @@ class Venue < ActiveRecord::Base
   # scopes
   scope :all_in_order, -> { order(:public_title) }
   scope :find_near_to, lambda { |target_lat, target_lon, range=0.05|
-          where('latitude > :lat1 AND latitude < :lat2 AND longitude > :lon1 AND longitude < :lon2',
+          where('latitude BETWEEN :lat1 AND :lat2 AND longitude BETWEEN :lon1 AND :lon2',
           lat1: target_lat - range, lat2: target_lat + range,
           lon1: target_lon - range, lon2: target_lon + range) }
   scope :visible_to_user, lambda {|user_id| where('created_by = ? OR (publicly_visible = ? AND approved_by > ?)', user_id, true, 0) }

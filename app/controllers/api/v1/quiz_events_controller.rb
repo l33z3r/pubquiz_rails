@@ -2,29 +2,31 @@ class Api::V1::QuizEventsController < Api::V1::BaseController
 
   respond_to :json
 
-  before_action :authentication_required
+  before_action :authentication_required, except: [:index]
 
   def index # list all nearby events
     # sample URL:
-    # http://localhost:3000/api/events?lat=53.5&lon=-6.0&accuracy=100
+    # http://localhost:3000/api/v1/quiz_events?lat=53.5&lon=-6.0&accuracy=100
     #
     # Find a list of possible events based on lat/lon or request.ip_address, and the current time
     range_in_degrees = (params[:accuracy] || 5).to_f * 0.01 # 0.1 will need fine-tuning later
     if params[:lat].to_f == 0.0 && params[:lon].to_f == 0.0
-      @events = nil
-      render json: {}, status: 404
+      render json: {message: 'Position data required'}, status: 404
     else
       @events = QuizEvent.near(params[:lat].to_f, params[:lon].to_f, range_in_degrees).happening_soon
-      render 'api/events/index.json.rabl', status: 200
+      Rails.logger.debug @events.inspect
+      render json: @events, each_serializer: Api::V1::QuizEventsSerializer, status: 200
     end
   end
 
   def show
     # sample URL
-    # http://localhost:3000/api/events/WKZEDcEP
-    params = {id: 'ABC123'} # event_guid
+    # http://localhost:3000/api/v1/quiz_events/WKZEDcEP
+    #
+    sample_params = {id: 'ABC123'} # event_guid
     if current_user # is registered in the event AND it's within 15 minutes of the start time
-    render json: {
+      event = QuizEvent.where(event_guid: params[:id]).first
+      response = {
             quiz_event: {
                     name: 'The name of the event',
                     time_zone: 'Dublin',
@@ -59,7 +61,9 @@ class Api::V1::QuizEventsController < Api::V1::BaseController
                           # etc.
                   ]
           }
-    }, status: 200
+    }
+    render json: response, each_serializer: Api::V1::QuizEventSerializer, status: 200
+
     elsif current_user #is in the team
       # it's too early
       Rails.logger.error 'API:EventsController#show error 403 player tried to link too early' # todo

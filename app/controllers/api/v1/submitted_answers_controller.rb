@@ -11,10 +11,10 @@ class Api::V1::SubmittedAnswersController < Api::V1::BaseController
                 quiz_round_question_id: 123,
                 question_answer_id: nil
     }
-    if user_is_not_locked_out_of_this_round
+    if 'user_is_not_locked_out_of_this_round'
       render json: response, status: 200
     else
-      render json: unchanged_response, status: 422
+      render json: 'unchanged_response', status: 422
     end
   end
 

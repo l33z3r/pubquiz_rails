@@ -132,7 +132,7 @@ describe QuestionsController do
     describe "POST 'create' while logged in as a normal user" do
       it 'returns http redirect' do
         post 'create', question: valid_params
-        flash[:success].should 'Question was successfully created'
+        flash[:success].should == 'Question was successfully created.'
         flash[:error].should be_nil
         response.status.should == 302
         response.should redirect_to(questions_url)
@@ -155,7 +155,7 @@ describe QuestionsController do
         put 'update', id: question.id, question: {visible_text: 'Ha ha'}
         flash[:success].should == 'Question was successfully updated.'
         flash[:error].should be_nil
-        response.status.should == 200
+        response.status.should == 302
         response.should redirect_to(questions_url)
       end
     end
@@ -185,7 +185,7 @@ describe QuestionsController do
         get 'index'
         flash[:success].should be_nil
         flash[:error].should be_nil
-        assigns(:question_categories).first.class.should == QuestionCategory
+        assigns(:questions).first.class.should == Question
         response.status.should == 200
         response.should render_template('index')
       end
@@ -193,10 +193,10 @@ describe QuestionsController do
 
     describe "GET 'show' while logged in as an admin user" do
       it 'returns http ok' do
-        get 'show', id: question_category.id
+        get 'show', id: question.id
         flash[:success].should be_nil
         flash[:error].should be_nil
-        assigns(:question_category).class.should == QuestionCategory
+        assigns(:question).class.should == Question
         response.status.should == 200
         response.should render_template('show')
       end
@@ -207,7 +207,7 @@ describe QuestionsController do
         get 'new'
         flash[:success].should be_nil
         flash[:error].should be_nil
-        assigns(:question_category).class.should == QuestionCategory
+        assigns(:question).class.should == Question
         response.status.should == 200
         response.should render_template('new')
       end
@@ -215,74 +215,65 @@ describe QuestionsController do
 
     describe "POST 'create' while logged in as an admin user" do
       it 'returns http ok' do
-        post 'create', question_category: {name: nil}
+        post 'create', question: {name: nil}
         # invalid input
         flash[:success].should be_nil
         flash[:error].should be_nil
-        assigns(:question_category).class.should == QuestionCategory
+        assigns(:question).class.should == Question
         response.status.should == 200
         response.should render_template('new')
       end
 
       it 'returns http redirect' do
-        post 'create', question_category: valid_params
+        post 'create', question: valid_params
         # valid input
 
-        flash[:success].should == 'QuestionCategory was successfully created'
+        flash[:success].should == 'Question was successfully created.'
         flash[:error].should be_nil
-        assigns(:question_category).class.should == QuestionCategory
+        assigns(:question).class.should == Question
         response.status.should == 302
       end
     end
 
     describe "GET 'edit' while logged in as an admin user" do
       it 'returns http redirect' do
-        get 'edit', id: question_category.id
+        get 'edit', id: question.id
         flash[:success].should be_nil
         flash[:error].should be_nil
         response.status.should == 200
-        assigns(:question_category).class.should == QuestionCategory
+        assigns(:question).class.should == Question
         response.should render_template('edit')
       end
     end
 
     describe "PUT 'update' while logged in as an admin user" do
       it 'returns http ok' do
-        put 'update', id: question_category.id , question_category: {name: ''}
+        put 'update', id: question.id , question: {visible_text: ''}
         # invalid input
         flash[:success].should be_nil
         flash[:error].should be_nil
         response.status.should == 200
-        assigns(:question_category).class.should == QuestionCategory
+        assigns(:question).class.should == Question
         response.should render_template('edit')
       end
 
       it 'returns http redirect' do
-        put 'update', id: question_category.id,
-            question_category: {name: 'United States Dollar'}
+        put 'update', id: question.id,
+            question: {visible_text: 'United States Dollar'}
         # valid input
-        flash[:success].should == 'QuestionCategory was successfully updated'
+        flash[:success].should == 'Question was successfully updated.'
         flash[:error].should be_nil
-        assigns(:question_category).class.should == QuestionCategory
+        assigns(:question).class.should == Question
         response.status.should == 302
       end
     end
 
     describe "DELETE 'update' while logged in as an admin user" do
 
-      # let!(:related_thing) { FactoryGirl.create(:related_thing) }
-
-      it 'returns http redirect' do
-        delete 'destroy', id: question_category.id
-        flash[:success].should be_nil
-        flash[:error].should == 'QuestionCategory could not be deleted.'
-        response.status.should == 302
-      end
-
       it 'returns http redirect' do
         question_category.questions.delete_all
-        delete 'destroy', id: question_category.id
-        flash[:success].should == 'QuestionCategory has been deleted.'
+        delete 'destroy', id: question.id
+        flash[:success].should == 'Question has been deleted.'
         flash[:error].should be_nil
         response.status.should == 302
       end

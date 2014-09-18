@@ -15,7 +15,7 @@
         %td.col-sm-8=@country.in_the_eu
       %tr
         %td.col-sm-4 Currency
-        %td.col-sm-8=@country.currency.name
+        %td.col-sm-8=@country.currency.try(:name)
     %p
       =link_to 'Back', countries_url
       |

@@ -1,0 +1,36 @@
+.row
+  .col-md-8.col-md-offset-2
+    =form_for(@currency, html: {class: 'form-horizontal', role: 'form'}) do |f|
+      .well.well-sm
+        =render partial: '/layouts/error_messages', locals: {thing: @currency, message: nil}
+        .form-group
+          =f.label :name, class: 'control-label col-md-4'
+          .col-md-8
+            =f.text_field :name, class: 'form-control'
+        .form-group
+          =f.label :iso_code, class: 'control-label col-md-4'
+          .col-md-8
+            =f.text_field :iso_code, class: 'form-control'
+        .form-group
+          =f.label :leading_symbol, class: 'control-label col-md-4'
+          .col-md-8
+            =f.text_field :leading_symbol, class: 'form-control'
+        .form-group
+          =f.label :trailing_symbol, class: 'control-label col-md-4'
+          .col-md-8
+            =f.text_field :trailing_symbol, class: 'form-control'
+        .form-group
+          =f.label :thousands_separator, class: 'control-label col-md-4'
+          .col-md-8
+            =f.text_field :thousands_separator, class: 'form-control'
+        .form-group
+          =f.label :decimal_separator, class: 'control-label col-md-4'
+          .col-md-8
+            =f.text_field :decimal_separator, class: 'form-control'
+        .form-group
+          =f.label :active, class: 'control-label col-md-4'
+          .col-md-8
+            =f.text_field :active, class: 'form-control'
+      =f.submit 'Save', class: 'btn btn-success'
+      or
+      =link_to 'cancel', currencies_path

@@ -1,0 +1,10 @@
+.row
+  .col-md-12
+    .page-header
+      %h1 Edit Currency
+=render partial: 'form'
+.row
+  .col-md-12
+    = link_to 'Back', currencies_path
+    \|
+    = link_to 'View', @currency

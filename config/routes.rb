@@ -1,5 +1,7 @@
 PubQuiz::Application.routes.draw do
 
+  resources :currencies
+
   # User session management
   get '/auth/:provider/callback', to: 'sessions#create', as: 'signin'
   get '/auth/failure', to: redirect('/')
