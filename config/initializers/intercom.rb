@@ -1,7 +1,7 @@
 IntercomRails.config do |config|
   # == Intercom app_id
   #
-  INTERCOM_APP_ID = ENV['BOURBON_INTERCOM_APP_ID']
+  INTERCOM_APP_ID = ENV['abc'] # todo
   config.app_id = INTERCOM_APP_ID
 
   # == Intercom secret key
