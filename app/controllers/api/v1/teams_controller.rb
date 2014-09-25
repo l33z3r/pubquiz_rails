@@ -5,8 +5,11 @@ class Api::V1::TeamsController < Api::V1::BaseController
   before_action :authentication_required
 
   def index
-    params = {event_guid: 'ABC123'}
+    # params = {quiz_event_id: 'ABC123'}
+    # http://localhost:3000/api/v1/teams?quiz_event_id=1
     # get a list of teams for my event
+    @teams = Team.where(quiz_event_id: params[:quiz_event_id].to_i)
+
     render json: {teams: [
             {name: 'The Army Ants', members: 1, id: 123},
             {name: 'The Perpetual Motion Squad', members: 4, id: 456}
