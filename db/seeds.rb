@@ -5,39 +5,49 @@
 puts '=' * 50
 
 #==================================================
+print 'Users: '
+
+User.where(id: 1).first_or_create(
+        name: 'Dan Laffan',
+        email: 'dan.laffan@mac.com'
+); print '.'
+User.where(id: 2).first_or_create(
+        name: 'Lee Farrell',
+        email: 'lee.farrell6@mail.dcu.ie'
+); print '.'
+
+puts ' DONE'
+
+#==================================================
+print 'Venue: '
+Venue.where(id: 1).first_or_create(
+        public_title: 'Oscars of Smithfield',
+        address: 'Smithfield Square, Dublin 7, Ireland',
+        latitude: 53.5,
+        longitude: -6.1,
+        created_by: 1,
+        updated_by: nil,
+        publicly_visible: true,
+        approved_by: 1,
+        time_zone: 'Dublin',
+        logo_file_name: nil,
+        logo_content_type: nil,
+        logo_file_size: nil,
+        logo_updated_at: nil)
+puts ' Done'
+
+#==================================================
 print 'Quiz Event: '
 QuizEvent.where(id: 1).first_or_create(
         name: 'School Fundraiser', 
         description: 'To help raise funds for new computers for our school', 
         time_zone: 'Dublin', 
         starts_at: '2014-08-31 18:09:07', 
-        venue_id: 1, 
-        created_by: 1, 
+        venue_id: Venue.first.id,
+        created_by: User.first.id,
         updated_by: nil, 
         event_guid: 'WKZEDcEP', 
-        sponsor_logo_url: nil, 
-        logo_file_name: nil, 
-        logo_content_type: nil, 
-        logo_file_size: nil, 
-        logo_updated_at: nil)
-puts ' Done'
-
-#==================================================
-print 'Venue: '
-Venue.where(id: 1).first_or_create(
-        public_title: 'Oscars of Smithfield',
-        address: 'Smithfield Square, Dublin 7, Ireland', 
-        latitude: 53.5, 
-        longitude: -6.1, 
-        created_by: 1, 
-        updated_by: nil, 
-        publicly_visible: true, 
-        approved_by: 1, 
-        time_zone: 'Dublin', 
-        logo_file_name: nil, 
-        logo_content_type: nil, 
-        logo_file_size: nil, 
-        logo_updated_at: nil)
+        sponsor_logo_url: nil)
 puts ' Done'
 
 #==================================================
@@ -358,14 +368,9 @@ print '.'
 puts ' Done'
 
 #==================================================
-print 'Create some quiz events'
-QuizEvent.where(id: 1).first_or_create(
-        name: 'School Fundraiser',
-        description: 'To help raise funds for new computers for our school',
-        time_zone: 'Dublin', starts_at: '2014-09-25 20:00:00', venue_id: Venue.first.id,
-        created_by: User.first.id, updated_by: nil, event_guid: 'WKZEDcEP',
-        sponsor_logo_url: nil, open_to_the_public: true
-)
+print 'Create something...'
+
+puts ' Done'
 
 
 #==================================================
@@ -374,17 +379,17 @@ print 'Create some teams'
 Team.where(id: 1).first_or_create(
         quiz_event_id: QuizEvent.first.id,
         name: 'The Army Ants'
-)
+); print '.'
 Team.where(id: 2).first_or_create(
         quiz_event_id: QuizEvent.first.id,
         name: 'The Perpetual Motion Squad'
-)
+); print '.'
 Team.where(id: 3).first_or_create(
         quiz_event_id: QuizEvent.first.id,
         name: 'Team Discovery Channel'
-)
+); print '.'
 
-
+puts ' Done'
 
 
 #==================================================

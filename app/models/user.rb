@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   OAUTH_PLATFORMS = %w(facebook) # twitter)
 
   def admin?
-    self.uid == '10152680945978307' || self.email == 'l33z3r@gmail.com'
+    self.uid == '10152680945978307' || self.email == 'lee.farrell6@mail.dcu.ie'
   end
 
   def self.from_omniauth(auth)
