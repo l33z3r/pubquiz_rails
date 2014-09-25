@@ -1,7 +1,5 @@
 PubQuiz::Application.routes.draw do
 
-  resources :currencies
-
   # User session management
   get '/auth/:provider/callback', to: 'sessions#create', as: 'signin'
   get '/auth/failure', to: redirect('/')
@@ -16,9 +14,10 @@ PubQuiz::Application.routes.draw do
   namespace :api do # for the iOS / Android apps
     namespace :v1 do
       # Getting started / signed in / joined onto an event and team
+      resources :event_team_members, only: [:show, :create, :update]
+      # resources :players, only: [:create]
       resources :quiz_events, only: [:index, :show, :create]
-      resources :players, only: [:create]
-      resources :teams, only: [:index, :create, :update]
+      resources :teams, only: [:index, :show, :create, :update]
 
       # playing
       resources :game_statistics, only: [:index, :show]
@@ -29,6 +28,7 @@ PubQuiz::Application.routes.draw do
 
   # Standard resources-based routes
   resources :countries
+  resources :currencies
   resources :questions
   resources :question_categories
   # resources :users
