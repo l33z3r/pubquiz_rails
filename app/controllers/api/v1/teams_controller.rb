@@ -22,7 +22,11 @@ class Api::V1::TeamsController < Api::V1::BaseController
   def show
     # sample URL:
     # GET  http://localhost:3000/api/teams/1
+    @team = Team.where(id: params[:id].to_i).first
+    if @team.quiz_event
 
+
+    end
     params = {team_id: 12}
     response = {
             id: 12,
@@ -45,7 +49,7 @@ class Api::V1::TeamsController < Api::V1::BaseController
     # curl http://localhost:3000/api/v1/teams method POST
 
     # create a team
-    @quiz_event = QuizEvent.where(id: params[:quiz_event_id].to_i).happening_soon.first
+    @quiz_event = QuizEvent.where(id: params[:team][:quiz_event_id].to_i).happening_soon.first
     if @quiz_event.nil?
       render json: {message: 'Event not found'}, status: 404
     else
