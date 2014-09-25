@@ -37,7 +37,7 @@ Venue.where(id: 1).first_or_create(
 puts ' Done'
 
 #==================================================
-print 'Quiz Event: '
+print 'Quiz Event (create #1): '
 QuizEvent.where(id: 1).first_or_create(
         name: 'School Fundraiser', 
         description: 'To help raise funds for new computers for our school', 
@@ -48,6 +48,16 @@ QuizEvent.where(id: 1).first_or_create(
         updated_by: nil, 
         event_guid: 'WKZEDcEP', 
         sponsor_logo_url: nil)
+puts ' Done'
+
+#==================================================
+print 'Quiz Event (update starts_at): '
+
+QuizEvent.all.each do |qe|
+  qe.starts_at = Time.now.to_date + qe.starts_at.hour.hours + qe.starts_at.min.minutes
+  qe.save
+  print '.'
+end
 puts ' Done'
 
 #==================================================
