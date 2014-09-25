@@ -16,11 +16,19 @@
 
 class User < ActiveRecord::Base
 
+  # Constants
   OAUTH_PLATFORMS = %w(facebook) # twitter)
 
+  # relationships
+  has_many :quiz_rounds_created, class_name: 'QuizRound', foreign_key: :created_by
+  has_many :quiz_rounds_updated, class_name: 'QuizRound', foreign_key: :updated_by
+
+  # instance_methods
   def admin?
     self.uid == '10152680945978307' || self.email == 'lee.farrell6@mail.dcu.ie'
   end
+
+  # class methods
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
