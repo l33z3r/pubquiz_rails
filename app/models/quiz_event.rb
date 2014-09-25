@@ -31,6 +31,7 @@ class QuizEvent < ActiveRecord::Base
   # relationships
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
   has_many :event_team_members, through: :teams
+  has_many :quiz_rounds
   has_many :teams
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
   belongs_to :venue
@@ -65,7 +66,7 @@ class QuizEvent < ActiveRecord::Base
   end
 
   def destroyable?
-    true # todo
+    self.quiz_rounds.empty? && self.teams.empty?
   end
 
   def in_dst

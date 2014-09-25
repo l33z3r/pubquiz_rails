@@ -21,12 +21,13 @@ describe QuestionCategory do
   #it { QuestionCategory.const_defined?(:CONSTANT_NAME) }
 
   # relationships
-  it { should belong_to(:country) }
   it { should have_many(:child_categories) }
+  it { should belong_to(:country) }
   it { should belong_to(:creator) }
-  it { should belong_to(:updater) }
   it { should belong_to(:parent_category) }
   it { should have_many(:questions) }
+  it { should have_many(:quiz_rounds) }
+  it { should belong_to(:updater) }
 
   # validation
   it { should validate_presence_of(:name) }
