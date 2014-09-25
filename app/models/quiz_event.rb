@@ -30,6 +30,7 @@ class QuizEvent < ActiveRecord::Base
 
   # relationships
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
+  has_many :event_team_members, through: :teams
   has_many :teams
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
   belongs_to :venue
@@ -44,7 +45,6 @@ class QuizEvent < ActiveRecord::Base
             numericality: {only_integer: true, greater_than: 0}
   validates :updated_by, allow_nil: true,
             numericality: {only_integer: true, greater_than: 0}
-  # validates :sponsor_logo_url, presence: true
 
   # callbacks
   before_validation :generate_event_guid, on: :create
@@ -60,6 +60,10 @@ class QuizEvent < ActiveRecord::Base
   # class methods
 
   # instance methods
+  def current?
+    self.starts_at > Proc.new { Time.now - 2.hours }.call && self.starts_at < Proc.new { Time.now + 1.day }.call
+  end
+
   def destroyable?
     true # todo
   end

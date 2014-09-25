@@ -54,10 +54,21 @@ puts ' Done'
 print 'Quiz Event (update starts_at): '
 
 QuizEvent.all.each do |qe|
-  qe.starts_at = Time.now.to_date + qe.starts_at.hour.hours + qe.starts_at.min.minutes
-  qe.save
+  qe.update_attributes(starts_at: Time.now)
   print '.'
 end
+puts ' Done'
+
+#==================================================
+print 'EventTeamMembers: '
+
+User.all.map(&:id).each do |u_id|
+  Team.all.map(&:id).each do |t_id|
+    EventTeamMember.where(user_id: u_id, team_id: t_id).first_or_create!
+    print '.'
+  end
+end
+
 puts ' Done'
 
 #==================================================

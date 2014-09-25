@@ -62,6 +62,7 @@ describe QuizEvent do
   # class methods
   
   # instance methods
+  it { should respond_to(:current?) }
   it { should respond_to(:destroyable?) }
   it { should respond_to(:in_dst) }
   it { should respond_to(:starts_at_epoch) }

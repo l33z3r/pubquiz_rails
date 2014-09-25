@@ -15,6 +15,7 @@ class Team < ActiveRecord::Base
 
   # relationships
   belongs_to :quiz_event
+  has_many :event_team_members
 
   # validation
   validates :name, presence: true
@@ -30,7 +31,7 @@ class Team < ActiveRecord::Base
 
   # instance methods
   def destroyable?
-    true
+    self.event_team_members.empty?
   end
 
   protected

@@ -14,10 +14,11 @@ require 'spec_helper'
 describe Team do
 
   # Constants
-  xit { Team.const_defined?(:CONSTANT_NAME) }
+  #it { Team.const_defined?(:CONSTANT_NAME) }
 
   # relationships
   it { should belong_to(:quiz_event) }
+  it { should have_many(:event_team_members) }
 
   # validation
   it { should validate_presence_of(:name) }

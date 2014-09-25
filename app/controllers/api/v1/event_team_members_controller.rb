@@ -1,5 +1,7 @@
 class Api::V1::EventTeamMembersController < Api::V1::BaseController
 
+  # todo
+
   respond_to :json
 
   before_action :authentication_required

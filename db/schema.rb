@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925174350) do
+ActiveRecord::Schema.define(version: 20140925205132) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -31,6 +31,20 @@ ActiveRecord::Schema.define(version: 20140925174350) do
     t.string   "decimal_separator"
     t.integer  "sorting_order"
     t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_team_members", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.string   "referral_from"
+    t.string   "device_platform"
+    t.string   "device_type"
+    t.boolean  "tablet"
+    t.boolean  "phone"
+    t.boolean  "pc"
+    t.integer  "app_version_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
