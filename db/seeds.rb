@@ -358,6 +358,36 @@ print '.'
 puts ' Done'
 
 #==================================================
+print 'Create some quiz events'
+QuizEvent.where(id: 1).first_or_create(
+        name: 'School Fundraiser',
+        description: 'To help raise funds for new computers for our school',
+        time_zone: 'Dublin', starts_at: '2014-09-25 20:00:00', venue_id: Venue.first.id,
+        created_by: User.first.id, updated_by: nil, event_guid: 'WKZEDcEP',
+        sponsor_logo_url: nil, open_to_the_public: true
+)
+
+
+#==================================================
+print 'Create some teams'
+
+Team.where(id: 1).first_or_create(
+        quiz_event_id: QuizEvent.first.id,
+        name: 'The Army Ants'
+)
+Team.where(id: 2).first_or_create(
+        quiz_event_id: QuizEvent.first.id,
+        name: 'The Perpetual Motion Squad'
+)
+Team.where(id: 3).first_or_create(
+        quiz_event_id: QuizEvent.first.id,
+        name: 'Team Discovery Channel'
+)
+
+
+
+
+#==================================================
 puts 'FINISHED.'
 puts '=' * 50
 

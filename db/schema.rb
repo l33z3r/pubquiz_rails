@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140914222053) do
+ActiveRecord::Schema.define(version: 20140925174350) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -91,6 +91,13 @@ ActiveRecord::Schema.define(version: 20140914222053) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.boolean  "open_to_the_public"
+  end
+
+  create_table "teams", force: true do |t|
+    t.string   "name"
+    t.integer  "quiz_event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
