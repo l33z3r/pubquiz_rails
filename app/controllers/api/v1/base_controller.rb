@@ -2,6 +2,8 @@ class Api::V1::BaseController < ApplicationController
 
   respond_to :json
 
+  skip_before_action :verify_authenticity_token
+
   def authentication_required
     unless current_user
       if params[:app_version]
