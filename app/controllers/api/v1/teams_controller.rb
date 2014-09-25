@@ -5,15 +5,19 @@ class Api::V1::TeamsController < Api::V1::BaseController
   before_action :authentication_required
 
   def index
-    # params = {quiz_event_id: 'ABC123'}
     # http://localhost:3000/api/v1/teams?quiz_event_id=1
-    # get a list of teams for my event
-    @teams = Team.where(quiz_event_id: params[:quiz_event_id].to_i)
 
-    render json: {teams: [
-            {name: 'The Army Ants', members: 1, id: 123},
-            {name: 'The Perpetual Motion Squad', members: 4, id: 456}
-    ]}
+    # first, find the event.
+    @quiz_event = QuizEvent.where(id: params[:quiz_event_id].to_i).happening_soon.first
+
+    if @quiz_event.nil?
+      render json: {message: 'Event not found'}, status: 404
+    else
+      # get a list of teams for my event
+      @teams = @quiz_event.teams
+      Rails.logger.debug @teams.inspect
+      render json: @teams, each_serializer: Api::V1::TeamsSerializer, status: 200
+    end
   end
 
   def show

@@ -30,6 +30,7 @@ describe QuizEvent do
 
   # relationships
   it { should belong_to(:creator) }
+  it { should have_many(:teams) }
   it { should belong_to(:updater) }
   it { should belong_to(:venue) }
 
