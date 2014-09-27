@@ -22,9 +22,10 @@ class EventTeamMember < ActiveRecord::Base
   REFERRAL_SOURCES = %w(person, team, event)
 
   # relationships
-  belongs_to :user
-  belongs_to :team
   #belongs_to :app_version
+  has_many :submitted_answers, inverse_of: :event_team_member
+  belongs_to :team, inverse_of: :event_team_members
+  belongs_to :user, inverse_of: :event_team_members
 
   # validation
   validates :user_id, presence: true,
@@ -37,16 +38,23 @@ class EventTeamMember < ActiveRecord::Base
   #validates :app_version_id, presence: true, numericality: {only_integer: true, greater_than: 0}
 
   # callbacks
+  after_create :create_submitted_answers
+  after_update :update_submitted_answers
   before_destroy :check_dependencies
 
   # scopes
-  scope :all_in_order, -> { order(:team_id, :user_id) }
+  scope :all_in_order, -> { order(:team_id, :user_id, :created_at) }
+  default_scope{all_in_order}
 
   # class methods
 
   # instance methods
   def destroyable?
     true
+  end
+
+  def quiz_event_id
+    self.team.try(:quiz_event_id)
   end
 
   protected
@@ -56,6 +64,29 @@ class EventTeamMember < ActiveRecord::Base
       errors.add(:base, "Couldn't be deleted because dependencies exist")
       false
     end
+  end
+
+  def create_submitted_answers
+    quiz_event = self.quiz_event
+    quiz_round_questions = quiz_event.quiz_round_questions
+    quiz_round_questions.each do |question|
+      SubmittedAnswer.create(
+              event_team_member_id: self.id,
+              user_id: self.user_id,
+              team_id: self.team_id,
+              quiz_event_id: self.team.quiz_event_id,
+              quiz_round_question_id: question.id,
+              question_answer_id: nil,
+              correct: nil,
+              points_scored: 0,
+              question_asked_at: nil,
+              question_answered_at: nil
+      )
+    end
+  end
+
+  def update_submitted_answers
+    self.submitted_answers.update_all(team_id: self.team_id)
   end
 
 end

@@ -21,6 +21,7 @@ describe User do
   # Constants
 
   # relationships
+  it { should have_many(:event_team_members) }
   it { should have_many(:quiz_rounds_created) }
   it { should have_many(:quiz_rounds_updated) }
 
@@ -32,6 +33,7 @@ describe User do
 
   # instance methods
   it { should respond_to(:admin?) }
+  it { should respond_to(:event_team_member_id) }
 
   # class methods
   it { User.should respond_to(:from_omniauth) }

@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20140927202807) do
   end
 
   create_table "submitted_answers", force: true do |t|
+    t.integer  "event_team_member_id"
     t.integer  "user_id"
     t.integer  "team_id"
     t.integer  "quiz_event_id"

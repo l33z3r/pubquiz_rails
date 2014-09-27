@@ -55,7 +55,7 @@ class QuestionCategoriesController < ApplicationController
       @question_category = QuestionCategory.find(params[:id])
     end
     @question_categories = QuestionCategory.where('id <> ?', params[:id]).all_in_order
-    @countries = [] # todo Country.all_in_order
+    @countries = Country.all_in_order
   end
 
   def allowed_params

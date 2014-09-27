@@ -3,6 +3,7 @@
 # Table name: submitted_answers
 #
 #  id                     :integer          not null, primary key
+#  event_team_member_id   :integer
 #  user_id                :integer
 #  team_id                :integer
 #  quiz_event_id          :integer

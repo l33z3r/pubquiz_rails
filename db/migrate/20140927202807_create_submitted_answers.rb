@@ -1,6 +1,7 @@
 class CreateSubmittedAnswers < ActiveRecord::Migration
   def change
     create_table :submitted_answers do |t|
+      t.integer :event_team_member_id, index: true
       t.integer :user_id, index: true
       t.integer :team_id, index: true
       t.integer :quiz_event_id, index: true

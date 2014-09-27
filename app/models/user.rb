@@ -20,12 +20,21 @@ class User < ActiveRecord::Base
   OAUTH_PLATFORMS = %w(facebook) # twitter)
 
   # relationships
+  has_many :event_team_members
   has_many :quiz_rounds_created, class_name: 'QuizRound', foreign_key: :created_by
   has_many :quiz_rounds_updated, class_name: 'QuizRound', foreign_key: :updated_by
+
+  # validation
+
+  # callbacks
 
   # instance_methods
   def admin?
     self.uid == '10152680945978307' || self.email == 'lee.farrell6@mail.dcu.ie'
+  end
+
+  def event_team_member_id
+    self.event_team_members.last.try(:id)
   end
 
   # class methods

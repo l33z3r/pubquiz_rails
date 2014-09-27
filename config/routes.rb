@@ -18,6 +18,7 @@ PubQuiz::Application.routes.draw do
       # resources :players, only: [:create]
       resources :quiz_events, only: [:index, :show, :create]
       resources :teams, only: [:index, :show, :create, :update]
+      resources :users, only: [:show]
 
       # playing
       resources :game_statistics, only: [:index, :show]

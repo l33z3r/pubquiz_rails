@@ -24,9 +24,10 @@ describe EventTeamMember do
   #it { EventTeamMember.const_defined?(:CONSTANT_NAME) }
 
   # relationships
-  it { should belong_to(:user) }
-  it { should belong_to(:team) }
   xit { should belong_to(:app_version) }
+  it { should have_many(:submitted_answers) }
+  it { should belong_to(:team) }
+  it { should belong_to(:user) }
 
   # validation
   it { should validate_presence_of(:user_id) }
@@ -39,6 +40,8 @@ describe EventTeamMember do
   xit { should validate_numericality_of(:app_version_id) }
 
   # callbacks
+  it { should callback(:create_submitted_answers).after(:create) }
+  it { should callback(:update_submitted_answers).after(:update) }
   it { should callback(:check_dependencies).before(:destroy) }
 
   # scopes
@@ -48,5 +51,6 @@ describe EventTeamMember do
   
   # instance methods
   it { should respond_to(:destroyable?) }
-  
+  it { should respond_to(:quiz_event_id) }
+
 end
