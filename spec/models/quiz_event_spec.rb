@@ -19,6 +19,7 @@
 #  logo_file_size     :integer
 #  logo_updated_at    :datetime
 #  open_to_the_public :boolean
+#  event_status       :string(255)
 #
 
 require 'spec_helper'
@@ -26,7 +27,7 @@ require 'spec_helper'
 describe QuizEvent do
 
   # Constants
-  #it { QuizEvent.const_defined?(:CONSTANT_NAME) }
+  it { QuizEvent.const_defined?(:STATUSES) }
 
   # relationships
   it { should belong_to(:creator) }
@@ -38,8 +39,6 @@ describe QuizEvent do
 
   # validation
   it { should validate_presence_of(:name) }
-
-  #it { should validate_presence_of(:description) }
 
   it { should validate_presence_of(:time_zone) }
 

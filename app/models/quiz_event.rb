@@ -19,6 +19,7 @@
 #  logo_file_size     :integer
 #  logo_updated_at    :datetime
 #  open_to_the_public :boolean
+#  event_status       :string(255)
 #
 
 class QuizEvent < ActiveRecord::Base
@@ -27,6 +28,12 @@ class QuizEvent < ActiveRecord::Base
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
 
   # Constants
+  STATUSES = %w(future open running paused closed)
+            # future   - will be held in the future
+            # open     - not started yet, but you can join a team, etc.
+            # running  - quiz in operation. Can't change team.
+            # paused   - running, but questions flow on hold
+            # closed   - quiz operation complete.
 
   # relationships
   belongs_to :creator, class_name: 'User', foreign_key: :created_by

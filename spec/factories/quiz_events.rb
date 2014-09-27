@@ -19,6 +19,7 @@
 #  logo_file_size     :integer
 #  logo_updated_at    :datetime
 #  open_to_the_public :boolean
+#  event_status       :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
