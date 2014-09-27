@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927165541) do
+ActiveRecord::Schema.define(version: 20140927202807) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -126,6 +126,20 @@ ActiveRecord::Schema.define(version: 20140927165541) do
     t.integer  "updated_by"
     t.integer  "question_category_id"
     t.integer  "sorting_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "submitted_answers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.integer  "quiz_event_id"
+    t.integer  "quiz_round_question_id"
+    t.integer  "question_answer_id"
+    t.boolean  "correct"
+    t.integer  "points_scored"
+    t.datetime "question_asked_at"
+    t.datetime "question_answered_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
