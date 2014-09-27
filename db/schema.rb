@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925233243) do
+ActiveRecord::Schema.define(version: 20140927165541) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -105,6 +105,18 @@ ActiveRecord::Schema.define(version: 20140925233243) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.boolean  "open_to_the_public"
+  end
+
+  create_table "quiz_round_questions", force: true do |t|
+    t.integer  "quiz_round_id"
+    t.integer  "question_id"
+    t.integer  "sorting_order"
+    t.integer  "time_limit_in_seconds"
+    t.integer  "points_for_correct_answer"
+    t.integer  "points_for_wrong_answer"
+    t.integer  "points_for_no_answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "quiz_rounds", force: true do |t|

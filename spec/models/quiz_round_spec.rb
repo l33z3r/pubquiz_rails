@@ -22,8 +22,9 @@ describe QuizRound do
 
   # relationships
   it { should belong_to(:creator) }
-  it { should belong_to(:quiz_event) }
   it { should belong_to(:question_category) }
+  it { should have_many(:quiz_round_questions) }
+  it { should belong_to(:quiz_event) }
   it { should belong_to(:updater) }
 
   # validation

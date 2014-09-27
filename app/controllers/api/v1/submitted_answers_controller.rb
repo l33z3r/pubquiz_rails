@@ -16,7 +16,7 @@ class Api::V1::SubmittedAnswersController < Api::V1::BaseController
     if 'user_is_not_locked_out_of_this_round'
       render json: response, status: 200
     else
-      render json: 'unchanged_response', status: 422
+      render json: {message: 'unchanged_response'}, status: 422
     end
   end
 

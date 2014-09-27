@@ -357,7 +357,6 @@ else
     QuestionCategory.where(id: cat[:id]).first_or_create(cat)
     print '.'
   end
-  puts ' DONE'
 
   #==================================================
   print 'Questions: '
@@ -365,7 +364,7 @@ else
           {id: 1,
             question_category_id: 1,
             visible_text: "Who was Alonso's team mate at Ferrari in 2013?",
-            # correct_answer_id: 1,
+            correct_answer_id: 1,
             created_by: user_id,
             updated_by: nil,
             publicly_visible: true,
@@ -375,6 +374,141 @@ else
                     {visible_text: 'Foghorn Leghorn', sorting_order: 2},
                     {visible_text: 'Chilton Pike', sorting_order: 3},
                     {visible_text: 'Michael Schumacher', sorting_order: 4}
+            ]
+          },
+          {id: 2,
+            question_category_id: 1,
+            visible_text: "Who was Alonso's team mate at Ferrari in 2014?",
+            correct_answer_id: 7,
+            created_by: user_id,
+            updated_by: nil,
+            publicly_visible: true,
+            approved_by: user_id,
+            question_answers_attributes: [
+                    {visible_text: 'Filipe Masse', sorting_order: 1},
+                    {visible_text: 'Foghorn Leghorn', sorting_order: 2},
+                    {visible_text: 'Kimi Raikonen', sorting_order: 3},
+                    {visible_text: 'Michael Schumacher', sorting_order: 4}
+            ]
+          },
+          {id: 3,
+            question_category_id: 2,
+            visible_text: 'Who replaced Charles Haughey as leader of Fianna Fáil?',
+            correct_answer_id: 13,
+            created_by: user_id,
+            updated_by: nil,
+            publicly_visible: true,
+            approved_by: user_id,
+            question_answers_attributes: [
+                    {visible_text: 'Albert Reynolds', sorting_order: 1},
+                    {visible_text: 'Bertie Ahern', sorting_order: 2},
+                    {visible_text: 'Garret Fitzgerald', sorting_order: 3},
+                    {visible_text: 'William Cosgrave', sorting_order: 4}
+            ]
+          },
+          {id: 4,
+            question_category_id: 2,
+            visible_text: 'Who was the Prime Minister of the UK in 2013?',
+            correct_answer_id: 16,
+            created_by: user_id,
+            updated_by: nil,
+            publicly_visible: true,
+            approved_by: user_id,
+            question_answers_attributes: [
+                    {visible_text: 'Mario Draghi', sorting_order: 1},
+                    {visible_text: 'Neil Clegg', sorting_order: 2},
+                    {visible_text: 'Gordon Brown', sorting_order: 3},
+                    {visible_text: 'David Cameron', sorting_order: 4}
+            ]
+          },
+          {id: 5,
+            question_category_id: 3,
+            visible_text: "Who had a hit with the song 'True'?",
+            correct_answer_id: 19,
+            created_by: user_id,
+            updated_by: nil,
+            publicly_visible: true,
+            approved_by: user_id,
+            question_answers_attributes: [
+                    {visible_text: 'Sharon Corr', sorting_order: 1},
+                    {visible_text: 'Shakin Stevens', sorting_order: 2},
+                    {visible_text: 'Spandau Ballet', sorting_order: 3},
+                    {visible_text: 'Spiro Gyra', sorting_order: 4}
+            ]
+          },
+          {id: 6,
+            question_category_id: 3,
+            visible_text: "Astrud Gilberto had a hit with song about a 'Girl From...'",
+            correct_answer_id: 21,
+            created_by: user_id,
+            updated_by: nil,
+            publicly_visible: true,
+            approved_by: user_id,
+            question_answers_attributes: [
+                    {visible_text: 'Ipanema', sorting_order: 1},
+                    {visible_text: 'Up Above', sorting_order: 2},
+                    {visible_text: 'Paris', sorting_order: 3},
+                    {visible_text: 'Rio', sorting_order: 4}
+            ]
+          },
+          {id: 7,
+            question_category_id: 3,
+            visible_text: "Who had a hit with 'Home Thoughts From Abroad'?",
+            correct_answer_id: 28,
+            created_by: user_id,
+            updated_by: nil,
+            publicly_visible: true,
+            approved_by: user_id,
+            question_answers_attributes: [
+                    {visible_text: 'Issac Hayes', sorting_order: 1},
+                    {visible_text: 'Chris Issacs', sorting_order: 2},
+                    {visible_text: 'Cliff Richard', sorting_order: 3},
+                    {visible_text: 'Clifford T. Ward', sorting_order: 4}
+            ]
+          },
+          {id: 8,
+            question_category_id: 3,
+            visible_text: "Which musician was the voice of 'Chef' in South Park?",
+            correct_answer_id: 30,
+            created_by: user_id,
+            updated_by: nil,
+            publicly_visible: true,
+            approved_by: user_id,
+            question_answers_attributes: [
+                    {visible_text: 'Ike Turner', sorting_order: 1},
+                    {visible_text: 'Issac Hayes', sorting_order: 2},
+                    {visible_text: 'Islam Josef', sorting_order: 3},
+                    {visible_text: 'Joe Cocker', sorting_order: 4}
+            ]
+          },
+          {id: 9,
+            question_category_id: 3,
+            visible_text: "Who had a hit with 'Running to Stand Still'?",
+            correct_answer_id: 33,
+            created_by: user_id,
+            updated_by: nil,
+            publicly_visible: true,
+            approved_by: user_id,
+            question_answers_attributes: [
+                    {visible_text: 'Kate Bush', sorting_order: 1},
+                    {visible_text: 'U2', sorting_order: 2},
+                    {visible_text: 'Ultravox', sorting_order: 3},
+                    {visible_text: 'The Chimes', sorting_order: 4}
+            ]
+          },
+          {id: 10,
+            question_category_id: 2,
+            visible_text: "Who had a hit with the James Bond theme 'Live and Let Die'?",
+            correct_answer_id: 40,
+            created_by: user_id,
+            updated_by: nil,
+            publicly_visible: true,
+            approved_by: user_id,
+            question_answers_attributes: [
+                    {visible_text: 'Gladys Knight', sorting_order: 1},
+                    {visible_text: 'Carley Simon', sorting_order: 2},
+                    {visible_text: 'Paul McCartney', sorting_order: 3},
+                    {visible_text: 'Wings', sorting_order: 4}
             ]
           }
   ]
@@ -386,100 +520,129 @@ else
   puts ' DONE'
 
   #==================================================
-  print 'Venue: '
-  Venue.where(id: 1).first_or_create(
-          public_title: 'Oscars of Smithfield',
-          address: 'Smithfield Square, Dublin 7, Ireland',
-          latitude: 53.5,
-          longitude: -6.1,
-          created_by: 1,
-          updated_by: nil,
-          publicly_visible: true,
-          approved_by: 1,
-          time_zone: 'Dublin',
-          logo_file_name: nil,
-          logo_content_type: nil,
-          logo_file_size: nil,
-          logo_updated_at: nil)
-  puts ' Done'
-
-  #==================================================
-  print 'Quiz Event (create #1): '
-  QuizEvent.where(id: 1).first_or_create(
-          name: 'School Fundraiser',
-          description: 'To help raise funds for new computers for our school',
-          time_zone: 'Dublin',
-          starts_at: '2014-08-31 18:09:07',
-          venue_id: Venue.first.id,
-          created_by: User.first.id,
-          updated_by: nil,
-          event_guid: 'WKZEDcEP',
-          sponsor_logo_url: nil)
-  puts ' Done'
-
-  #==================================================
-  print 'Quiz Event (update starts_at) (dev only): '
-
   if Rails.env.development?
-    QuizEvent.all.each do |qe|
-      qe.update_attributes(starts_at: Time.now)
-      print '.'
-    end
+    print 'Venue: '
+    Venue.where(id: 1).first_or_create(
+            public_title: 'Oscars of Smithfield',
+            address: 'Smithfield Square, Dublin 7, Ireland',
+            latitude: 53.5,
+            longitude: -6.1,
+            created_by: 1,
+            updated_by: nil,
+            publicly_visible: true,
+            approved_by: 1,
+            time_zone: 'Dublin',
+            logo_file_name: nil,
+            logo_content_type: nil,
+            logo_file_size: nil,
+            logo_updated_at: nil)
+    puts ' Done'
   end
-  puts ' Done'
 
   #==================================================
-  print 'Quiz Rounds: '
-
-  (1..4).each do |round_number|
-    QuizRound.where(id: round_number).first_or_create!(
-            question_category_id: 1,
-            sorting_order: round_number * 10,
-            quiz_event_id: QuizEvent.first.id,
+  if Rails.env.development?
+    print 'Quiz Event (create #1): '
+    QuizEvent.where(id: 1).first_or_create(
+            name: 'School Fundraiser',
+            description: 'To help raise funds for new computers for our school',
+            time_zone: 'Dublin',
+            starts_at: '2014-08-31 18:09:07',
+            venue_id: Venue.first.id,
             created_by: User.first.id,
-            name: "Quiz Round ##{round_number}"
-    ); print '.'
+            updated_by: nil,
+            event_guid: 'WKZEDcEP',
+            sponsor_logo_url: nil)
+    puts ' Done'
   end
-  puts ' Done'
 
   #==================================================
-  print 'Create something...'
-
-  puts ' Done'
-
-
-  #==================================================
-  print 'Create some teams'
-
-  Team.where(id: 1).first_or_create(
-          quiz_event_id: QuizEvent.first.id,
-          name: 'The Army Ants'
-  ); print '.'
-  Team.where(id: 2).first_or_create(
-          quiz_event_id: QuizEvent.first.id,
-          name: 'The Perpetual Motion Squad'
-  ); print '.'
-  Team.where(id: 3).first_or_create(
-          quiz_event_id: QuizEvent.first.id,
-          name: 'Team Discovery Channel'
-  ); print '.'
-
-  puts ' Done'
-
-  #==================================================
-  print 'EventTeamMembers (dev only): '
-  # makes every user a member of every team.
-
   if Rails.env.development?
-    User.all.map(&:id).each do |u_id|
-      Team.all.map(&:id).each do |t_id|
-        EventTeamMember.where(user_id: u_id, team_id: t_id).first_or_create!
+    print 'Quiz Event (update starts_at) (dev only): '
+
+    if Rails.env.development?
+      QuizEvent.all.each do |qe|
+        qe.update_attributes(starts_at: Time.now)
         print '.'
       end
     end
+    puts ' Done'
   end
 
-  puts ' Done'
+  #==================================================
+  if Rails.env.development?
+    print 'Quiz Rounds & QuizRoundQuestions: '
+
+    categories = QuestionCategory.all
+
+    categories.each_with_index do |category, counter_2|
+      if category.questions.count > 0
+        round = QuizRound.where(name: "#{category.name} Round").first_or_initialize(
+                question_category_id: category.id,
+                sorting_order: (counter_2 + 1) * 10,
+                quiz_event_id: QuizEvent.first.id,
+                created_by: user_id
+        )
+        round.save!; print ':'
+        category.questions.each_with_index do |question, counter_3|
+          QuizRoundQuestion.where(question_id: question.id, quiz_round_id: round.id).first_or_create!(
+                  sorting_order: (counter_3 + 1) * 10,
+                  time_limit_in_seconds: 10,
+                  points_for_correct_answer: 10,
+                  points_for_wrong_answer: -2,
+                  points_for_no_answer: -1,
+          ); print '.'
+        end
+      end
+    end
+
+    # (1..4).each do |round_number|
+    #   QuizRound.where(id: round_number).first_or_create!(
+    #           question_category_id: 1,
+    #           sorting_order: round_number * 10,
+    #           quiz_event_id: QuizEvent.first.id,
+    #           created_by: User.first.id,
+    #           name: "Quiz Round ##{round_number}"
+    #   ); print '.'
+    # end
+    puts ' Done'
+  end
+
+  #==================================================
+  if Rails.env.development?
+    print 'Create some teams'
+
+    Team.where(id: 1).first_or_create(
+            quiz_event_id: QuizEvent.first.id,
+            name: 'The Army Ants'
+    ); print '.'
+    Team.where(id: 2).first_or_create(
+            quiz_event_id: QuizEvent.first.id,
+            name: 'The Perpetual Motion Squad'
+    ); print '.'
+    Team.where(id: 3).first_or_create(
+            quiz_event_id: QuizEvent.first.id,
+            name: 'Team Discovery Channel'
+    ); print '.'
+
+    puts ' Done'
+  end
+
+  #==================================================
+  if Rails.env.development?
+    print 'EventTeamMembers (dev only): '
+    # makes every user a member of every team.
+
+    if Rails.env.development?
+      User.all.map(&:id).each do |u_id|
+        Team.all.map(&:id).each do |t_id|
+          EventTeamMember.where(user_id: u_id, team_id: t_id).first_or_create!
+          print '.'
+        end
+      end
+    end
+
+    puts ' Done'
+  end
 
   #==================================================
   puts 'FINISHED.'

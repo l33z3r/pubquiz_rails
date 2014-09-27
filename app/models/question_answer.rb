@@ -36,6 +36,7 @@ class QuestionAnswer < ActiveRecord::Base
 
   # scopes
   scope :all_in_order, -> { order(:question_id) }
+  default_scope{all_in_order}
 
   # class methods
 

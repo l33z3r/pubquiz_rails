@@ -19,8 +19,9 @@ class QuizRound < ActiveRecord::Base
 
   # relationships
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
-  belongs_to :quiz_event
   belongs_to :question_category
+  belongs_to :quiz_event
+  has_many :quiz_round_questions
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
 
   # validation
