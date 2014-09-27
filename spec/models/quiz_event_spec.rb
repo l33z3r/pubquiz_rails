@@ -38,6 +38,8 @@ describe QuizEvent do
   it { should belong_to(:venue) }
 
   # validation
+  it { should ensure_inclusion_of(:event_status).in_array(QuizEvent::STATUSES) }
+
   it { should validate_presence_of(:name) }
 
   it { should validate_presence_of(:time_zone) }

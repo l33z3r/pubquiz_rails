@@ -44,6 +44,7 @@ class QuizEvent < ActiveRecord::Base
   belongs_to :venue
 
   # validation
+  validates :event_status, inclusion: {in: STATUSES}
   validates :name, presence: true
   validates :time_zone, presence: true
   validates :starts_at, presence: true
