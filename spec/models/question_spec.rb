@@ -16,6 +16,9 @@
 #  image_content_type   :string(255)
 #  image_file_size      :integer
 #  image_updated_at     :datetime
+#  country_id           :integer
+#  year_from            :integer
+#  year_to              :integer
 #
 
 require 'spec_helper'
@@ -32,6 +35,7 @@ describe Question do
   it { should belong_to(:creator) }
   it { should belong_to(:updater) }
   it { should belong_to(:approver) }
+  it { should belong_to(:country) }
 
   # validation
   it { should validate_presence_of(:question_category_id) }
@@ -52,7 +56,17 @@ describe Question do
   it { should_not validate_presence_of(:approved_by) }
   it { should validate_numericality_of(:approved_by) }
 
+  it { should_not validate_presence_of(:country_id) }
+  it { should validate_numericality_of(:country_id) }
+
+  it { should_not validate_presence_of(:year_from) }
+  it { should validate_numericality_of(:year_from) }
+
+  it { should_not validate_presence_of(:year_to) }
+  it { should validate_numericality_of(:year_to) }
+
   # callbacks
+  it { should callback(:set_year_to).before(:create) }
   it { should callback(:check_dependencies).before(:destroy) }
 
   # scopes

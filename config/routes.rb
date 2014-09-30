@@ -20,14 +20,13 @@ PubQuiz::Application.routes.draw do
     namespace :v1 do
       # Getting started / signed in / joined onto an event and team
       resources :event_team_members, only: [:show, :create, :update]
-      # resources :players, only: [:create]
       resources :quiz_events, only: [:index, :show, :create]
       resources :teams, only: [:index, :show, :create, :update]
       resources :users, only: [:show]
 
       # playing
       resources :game_statistics, only: [:index, :show]
-      resources :quiz_answers, only: [:create]
+      resources :submitted_answers, only: [:update]
     end
   end
 

@@ -16,6 +16,9 @@
 #  image_content_type   :string(255)
 #  image_file_size      :integer
 #  image_updated_at     :datetime
+#  country_id           :integer
+#  year_from            :integer
+#  year_to              :integer
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

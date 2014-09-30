@@ -20,6 +20,7 @@ describe Country do
 
   # relationships
   it { should belong_to(:currency) }
+  it { should have_many(:questions) }
 
   # validation
   it { should validate_presence_of(:name) }

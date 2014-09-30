@@ -17,6 +17,7 @@ class Country < ActiveRecord::Base
 
   # relationships
   belongs_to :currency
+  has_many :questions
   has_many :question_categories
 
   # validation
@@ -36,7 +37,7 @@ class Country < ActiveRecord::Base
 
   # instance methods
   def destroyable?
-    self.question_categories.empty?
+    self.question_categories.empty? && self.questions.empty?
   end
 
   protected

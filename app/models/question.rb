@@ -16,6 +16,9 @@
 #  image_content_type   :string(255)
 #  image_file_size      :integer
 #  image_updated_at     :datetime
+#  country_id           :integer
+#  year_from            :integer
+#  year_to              :integer
 #
 
 class Question < ActiveRecord::Base
@@ -34,6 +37,7 @@ class Question < ActiveRecord::Base
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
   belongs_to :approver, class_name: 'User', foreign_key: :approved_by
+  belongs_to :country
 
   # validation
   validates :question_category_id, presence: true,
@@ -49,8 +53,15 @@ class Question < ActiveRecord::Base
             numericality: {only_integer: true, greater_than: 0}
   validates :approved_by, allow_nil: true,
             numericality: {only_integer: true, greater_than: 0}
+  validates :country_id, allow_nil: true,
+            numericality: {only_integer: true}
+  validates :year_from, allow_nil: true,
+            numericality: {only_integer: true}
+  validates :year_to, allow_nil: true,
+            numericality: {only_integer: true}
 
   # callbacks
+  before_create :set_year_to
   before_destroy :check_dependencies
 
   # scopes
@@ -71,6 +82,10 @@ class Question < ActiveRecord::Base
       errors.add(:base, "Couldn't be deleted because dependencies exist")
       false
     end
+  end
+
+  def set_year_to
+    self.year_to ||= self.year_from
   end
 
 end
