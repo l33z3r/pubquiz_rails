@@ -37,8 +37,9 @@ class QuizEvent < ActiveRecord::Base
 
   # relationships
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
-  has_many :event_team_members, through: :teams
+  has_many :event_team_members
   has_many :quiz_rounds
+  has_many :submitted_answers
   has_many :teams
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
   belongs_to :venue
@@ -65,6 +66,11 @@ class QuizEvent < ActiveRecord::Base
                                     Proc.new{Time.now - 2.hours}.call,
                                     Proc.new{Time.now + 1.day}.call ) }
   scope :near, lambda {|lat, lon, range| where(venue_id: Venue.find_near_to(lat, lon, range).map(&:id)) }
+  scope :status_future, -> { where(event_status: 'future') }
+  scope :status_open, -> { where(event_status: 'open') }
+  scope :status_running, -> { where(event_status: 'running') }
+  scope :status_paused, -> { where(event_status: 'paused') }
+  scope :status_closed, -> { where(event_status: 'closed') }
 
   # class methods
 

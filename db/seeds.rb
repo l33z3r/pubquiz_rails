@@ -551,7 +551,8 @@ else
             created_by: User.first.id,
             updated_by: nil,
             event_guid: 'WKZEDcEP',
-            sponsor_logo_url: nil)
+            sponsor_logo_url: nil,
+            quiz_status: 'running')
     puts ' Done'
   end
 

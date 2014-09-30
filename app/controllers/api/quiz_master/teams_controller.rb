@@ -1,29 +1,25 @@
 class Api::QuizMaster::TeamsController < Api::QuizMaster::BaseController
 
-  respond_to :json
-
-  before_action :logged_in_required
-
   def index
     # required params[:quiz_event_id]
     # optional params[:quiz_round_id]
-    @quiz_event = current_user.quiz_events.where(id: params[:quiz_event_id].to_i).first
-    if @quiz_event
-      @teams = @quiz_event.try(:teams)
-      if @teams
-        @quiz_round_id = @quiz_event.quiz_rounds.where(id: params[:quiz_round_id].to_i).first.try(:id)
-        if @quiz_round_id
-           summary_data = SubmittedAnswer.includes(:quiz_round_question).where('quiz_round_questions.quiz_round_id = ?', @quiz_round_id).group(:team_id).references(:quiz_round_question)
-        else
-          summary_data = @quiz_event.submitted_answers.group(:team_id)
-        end
-        @scores = summary_data.map {|x| [x.team_id, x.sum(:points_scored)] }
-        render json: @teams, serializer: Api::QuizMaster::TeamsSerializer
+    @teams = @quiz_event.try(:teams)
+    if @teams
+      if params[:quiz_round_id]
+        summary_data = @quiz_event.submitted_answers.where(quiz_round_id: params[:quiz_round_id].to_i).group(:team_id).sum(:points_scored)
       else
-        render json: {message: 'Teams not found'}, status: 404
+        summary_data = @quiz_event.submitted_answers.group(:team_id).sum(:points_scored)
       end
+      results = []
+      @teams.each do |team|
+        results << {id: team.id, name: team.name,
+                    quiz_round_id: params[:quiz_round_id].to_i,
+                    quiz_event_id: team.quiz_event_id,
+                    score: summary_data[team.id].to_i}
+      end
+      render json: {teams: results}, status: 200
     else
-      render json: {message: 'Quiz Event not found'}, status: 404
+      render json: {message: 'Teams not found'}, status: 404
     end
   end
 

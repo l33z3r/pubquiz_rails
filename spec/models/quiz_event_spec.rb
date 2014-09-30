@@ -33,6 +33,7 @@ describe QuizEvent do
   it { should belong_to(:creator) }
   it { should have_many(:event_team_members) }
   it { should have_many(:quiz_rounds) }
+  it { should have_many(:submitted_answers) }
   it { should have_many(:teams) }
   it { should belong_to(:updater) }
   it { should belong_to(:venue) }
@@ -61,6 +62,13 @@ describe QuizEvent do
 
   # scopes
   it { QuizEvent.should respond_to(:all_in_order) }
+  it { QuizEvent.should respond_to(:happening_soon) }
+  it { QuizEvent.should respond_to(:near) }
+  it { QuizEvent.should respond_to(:status_future) }
+  it { QuizEvent.should respond_to(:status_open) }
+  it { QuizEvent.should respond_to(:status_running) }
+  it { QuizEvent.should respond_to(:status_paused) }
+  it { QuizEvent.should respond_to(:status_closed) }
 
   # class methods
   

@@ -15,6 +15,7 @@
 #  question_answered_at   :datetime
 #  created_at             :datetime
 #  updated_at             :datetime
+#  quiz_round_id          :integer
 #
 
 class SubmittedAnswer < ActiveRecord::Base

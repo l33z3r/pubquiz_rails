@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   # relationships
   has_many :event_team_members
+  has_many :quiz_events, class_name: 'QuizEvent', foreign_key: :created_by
   has_many :quiz_rounds_created, class_name: 'QuizRound', foreign_key: :created_by
   has_many :quiz_rounds_updated, class_name: 'QuizRound', foreign_key: :updated_by
 

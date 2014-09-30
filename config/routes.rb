@@ -10,8 +10,13 @@ PubQuiz::Application.routes.draw do
   get 'home/index'
   get 'how_it_works', to: 'home#how_it_works', as: :how_it_works
 
-
   namespace :api do # for the iOS / Android apps
+    namespace :quiz_master do
+      get 'teams/:quiz_event_id(/:quiz_round_id)', to: 'teams#index'
+      get 'people/:quiz_event_id(/:quiz_round_id)', to: 'people#index'
+      get 'player/:quiz_event_id/:event_team_member_id', to: 'people#show'
+    end
+
     namespace :v1 do
       # Getting started / signed in / joined onto an event and team
       resources :event_team_members, only: [:show, :create, :update]

@@ -4,12 +4,10 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def show
     # params = {id: 1} # user's ID
+    # GET  http://localhost:3000/api/v1/users/1
+    # 1 can be any number - the params[:id] is totally ignored
     @user = current_user
-    if @user && @user.id == params[:id].to_i
-      render json: @user, serializer: Api::V1::UserSerializer
-    else
-      render json: {message: 'User not found'}, status: 404
-    end
+    render json: @user, serializer: Api::V1::UserSerializer, status: 200
   end
 
 end

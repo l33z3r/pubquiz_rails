@@ -14,6 +14,7 @@
 #  app_version_id  :integer
 #  created_at      :datetime
 #  updated_at      :datetime
+#  quiz_event_id   :integer
 #
 
 class EventTeamMember < ActiveRecord::Base
@@ -23,6 +24,7 @@ class EventTeamMember < ActiveRecord::Base
 
   # relationships
   #belongs_to :app_version
+  belongs_to :quiz_event
   has_many :submitted_answers, inverse_of: :event_team_member
   belongs_to :team, inverse_of: :event_team_members
   belongs_to :user, inverse_of: :event_team_members

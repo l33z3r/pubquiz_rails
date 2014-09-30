@@ -14,6 +14,7 @@
 #  app_version_id  :integer
 #  created_at      :datetime
 #  updated_at      :datetime
+#  quiz_event_id   :integer
 #
 
 require 'spec_helper'
@@ -25,6 +26,7 @@ describe EventTeamMember do
 
   # relationships
   xit { should belong_to(:app_version) }
+  it { should belong_to(:quiz_event) }
   it { should have_many(:submitted_answers) }
   it { should belong_to(:team) }
   it { should belong_to(:user) }

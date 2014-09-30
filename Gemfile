@@ -4,7 +4,7 @@ ruby '2.1.2'
 gem 'rails', '4.1.6'
 
 # Gems for all environments:
-gem 'active_model_serializers', '~> 0.9'
+gem 'active_model_serializers', '~> 0.8.0' # 0.9 is not ready for prime-time
 gem 'aws-sdk', '~> 1.42.0'
 gem 'coffee-rails', '~> 4.0.1' # Use CoffeeScript for .js.coffee assets and views
 gem 'geocoder'
