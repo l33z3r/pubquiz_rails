@@ -8,5 +8,9 @@ describe HomeController do
       get('/').should route_to('home#index')
     end
 
+    it 'routes to #how_it_works' do
+      get('/how_it_works').should route_to('home#how_it_works')
+    end
+
   end
 end

@@ -60,6 +60,7 @@ describe SubmittedAnswer do
   it { should validate_numericality_of(:user_id) }
 
   # callbacks
+  it { should callback(:set_quiz_round_id).before(:create) }
   it { should callback(:check_dependencies).before(:destroy) }
 
   # scopes

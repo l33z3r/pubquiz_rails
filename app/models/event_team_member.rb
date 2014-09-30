@@ -24,7 +24,7 @@ class EventTeamMember < ActiveRecord::Base
 
   # relationships
   #belongs_to :app_version
-  belongs_to :quiz_event
+  belongs_to :quiz_event, inverse_of: :event_team_members
   has_many :submitted_answers, inverse_of: :event_team_member
   belongs_to :team, inverse_of: :event_team_members
   belongs_to :user, inverse_of: :event_team_members
@@ -40,6 +40,7 @@ class EventTeamMember < ActiveRecord::Base
   #validates :app_version_id, presence: true, numericality: {only_integer: true, greater_than: 0}
 
   # callbacks
+  before_create :set_event_id
   after_create :create_submitted_answers
   after_update :update_submitted_answers
   before_destroy :check_dependencies
@@ -52,11 +53,7 @@ class EventTeamMember < ActiveRecord::Base
 
   # instance methods
   def destroyable?
-    true
-  end
-
-  def quiz_event_id
-    self.team.try(:quiz_event_id)
+    self.submitted_answers.empty?
   end
 
   protected
@@ -85,6 +82,10 @@ class EventTeamMember < ActiveRecord::Base
               question_answered_at: nil
       )
     end
+  end
+
+  def set_event_id
+    self.quiz_event_id = self.team.quiz_event_id
   end
 
   def update_submitted_answers

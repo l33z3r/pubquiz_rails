@@ -26,6 +26,7 @@ class Team < ActiveRecord::Base
 
   # scopes
   scope :all_in_order, -> { order(:quiz_event_id, :name) }
+  default_scope{all_in_order}
 
   # class methods
 

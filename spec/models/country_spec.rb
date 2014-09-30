@@ -19,7 +19,7 @@ describe Country do
   #it { Country.const_defined?(:CONSTANT_NAME) }
 
   # relationships
-  xit { should belong_to(:currency) }
+  it { should belong_to(:currency) }
 
   # validation
   it { should validate_presence_of(:name) }

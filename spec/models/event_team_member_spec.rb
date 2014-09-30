@@ -22,7 +22,7 @@ require 'spec_helper'
 describe EventTeamMember do
 
   # Constants
-  #it { EventTeamMember.const_defined?(:CONSTANT_NAME) }
+  it { EventTeamMember.const_defined?(:REFERRAL_SOURCES) }
 
   # relationships
   xit { should belong_to(:app_version) }
@@ -42,6 +42,7 @@ describe EventTeamMember do
   xit { should validate_numericality_of(:app_version_id) }
 
   # callbacks
+  it { should callback(:set_event_id).before(:create) }
   it { should callback(:create_submitted_answers).after(:create) }
   it { should callback(:update_submitted_answers).after(:update) }
   it { should callback(:check_dependencies).before(:destroy) }
@@ -53,6 +54,5 @@ describe EventTeamMember do
   
   # instance methods
   it { should respond_to(:destroyable?) }
-  it { should respond_to(:quiz_event_id) }
 
 end

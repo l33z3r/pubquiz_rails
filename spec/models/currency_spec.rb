@@ -53,7 +53,5 @@ describe Currency do
   
   # instance methods
   it { should respond_to(:destroyable?) }
-  
-  skip "add some examples to (or delete) #{__FILE__}"
 
 end

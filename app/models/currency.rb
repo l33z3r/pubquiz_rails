@@ -37,6 +37,7 @@ class Currency < ActiveRecord::Base
 
   # scopes
   scope :all_in_order, -> { order(:sorting_order) }
+  default_scope{all_in_order}
 
   # class methods
 

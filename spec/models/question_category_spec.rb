@@ -42,8 +42,8 @@ describe QuestionCategory do
   it { should_not validate_presence_of(:updated_by) }
   it { should validate_numericality_of(:updated_by) }
 
-  xit { should_not validate_presence_of(:country_id) }
-  xit { should validate_numericality_of(:country_id) }
+  it { should_not validate_presence_of(:country_id) }
+  it { should validate_numericality_of(:country_id) }
 
   # callbacks
   it { should callback(:check_dependencies).before(:destroy) }

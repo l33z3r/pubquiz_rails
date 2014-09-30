@@ -55,12 +55,13 @@ class Question < ActiveRecord::Base
 
   # scopes
   scope :all_in_order, -> { order(:visible_text) }
+  default_scope{all_in_order}
 
   # class methods
 
   # instance methods
   def destroyable?
-    true
+    self.question_answers.empty?
   end
 
   protected

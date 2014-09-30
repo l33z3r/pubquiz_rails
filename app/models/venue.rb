@@ -51,6 +51,7 @@ class Venue < ActiveRecord::Base
 
   # scopes
   scope :all_in_order, -> { order(:public_title) }
+  default_scope{all_in_order}
   scope :find_near_to, lambda { |target_lat, target_lon, range=0.05|
           where('latitude BETWEEN :lat1 AND :lat2 AND longitude BETWEEN :lon1 AND :lon2',
           lat1: target_lat - range, lat2: target_lat + range,

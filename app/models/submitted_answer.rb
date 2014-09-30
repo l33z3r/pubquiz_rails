@@ -49,16 +49,18 @@ class SubmittedAnswer < ActiveRecord::Base
             numericality: {only_integer: true, greater_than: 0}
 
   # callbacks
+  before_create :set_quiz_round_id
   before_destroy :check_dependencies
 
   # scopes
   scope :all_in_order, -> { order(:user_id) }
+  default_scope{all_in_order}
 
   # class methods
 
   # instance methods
   def destroyable?
-    true
+    false
   end
 
   protected
@@ -68,6 +70,10 @@ class SubmittedAnswer < ActiveRecord::Base
       errors.add(:base, "Couldn't be deleted because dependencies exist")
       false
     end
+  end
+
+  def set_quiz_round_id
+    self.quiz_round_id = self.quiz_round_question.quiz_round_id
   end
 
 end

@@ -42,12 +42,13 @@ class QuestionCategory < ActiveRecord::Base
 
   # scopes
   scope :all_in_order, -> { order(:name) }
+  default_scope{all_in_order}
 
   # class methods
 
   # instance methods
   def destroyable?
-    self.questions.empty? && self.child_categories.empty? && self.quiz_rounds.empty?
+    self.child_categories.empty? && self.questions.empty? && self.quiz_rounds.empty?
   end
 
   protected

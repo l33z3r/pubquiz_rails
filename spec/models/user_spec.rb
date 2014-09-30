@@ -19,9 +19,11 @@ require 'spec_helper'
 describe User do
 
   # Constants
+  it { Team.const_defined?(:OAUTH_PLATFORMS) }
 
   # relationships
   it { should have_many(:event_team_members) }
+  it { should have_many(:quiz_events) }
   it { should have_many(:quiz_rounds_created) }
   it { should have_many(:quiz_rounds_updated) }
 

@@ -44,6 +44,7 @@ class QuizRoundQuestion < ActiveRecord::Base
 
   # scopes
   scope :all_in_order, -> { order(:quiz_round_id, :sorting_order) }
+  default_scope{all_in_order}
 
   # class methods
 

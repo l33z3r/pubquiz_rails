@@ -76,7 +76,7 @@ class QuizEvent < ActiveRecord::Base
 
   # instance methods
   def current?
-    self.starts_at > Proc.new { Time.now - 2.hours }.call && self.starts_at < Proc.new { Time.now + 1.day }.call
+    %w(open running paused).include?(self.event_status)
   end
 
   def destroyable?
