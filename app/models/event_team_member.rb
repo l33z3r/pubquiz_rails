@@ -67,20 +67,24 @@ class EventTeamMember < ActiveRecord::Base
 
   def create_submitted_answers
     quiz_event = self.quiz_event
-    quiz_round_questions = quiz_event.quiz_round_questions
-    quiz_round_questions.each do |question|
-      SubmittedAnswer.create(
-              event_team_member_id: self.id,
-              user_id: self.user_id,
-              team_id: self.team_id,
-              quiz_event_id: self.team.quiz_event_id,
-              quiz_round_question_id: question.id,
-              question_answer_id: nil,
-              correct: nil,
-              points_scored: 0,
-              question_asked_at: nil,
-              question_answered_at: nil
-      )
+
+    quiz_event.quiz_rounds.each do |quiz_round|
+      quiz_round_questions = quiz_round.quiz_round_questions
+
+      quiz_round_questions.each do |question|
+        SubmittedAnswer.create(
+                event_team_member_id: self.id,
+                user_id: self.user_id,
+                team_id: self.team_id,
+                quiz_event_id: self.team.quiz_event_id,
+                quiz_round_question_id: question.id,
+                question_answer_id: nil,
+                correct: nil,
+                points_scored: 0,
+                question_asked_at: nil,
+                question_answered_at: nil
+        )
+      end
     end
   end
 

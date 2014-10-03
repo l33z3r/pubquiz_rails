@@ -552,7 +552,7 @@ else
             updated_by: nil,
             event_guid: 'WKZEDcEP',
             sponsor_logo_url: nil,
-            quiz_status: 'running')
+            event_status: 'running')
     puts ' Done'
   end
 

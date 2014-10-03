@@ -8,7 +8,7 @@ class Api::V1::QuizEventsController < Api::V1::BaseController
     # GET  http://localhost:3000/api/v1/quiz_events?lat=53.5&lon=-6.0&accuracy=100
 
     # Find a list of possible events based on lat/lon or request.ip_address, and the current time
-    range_in_degrees = (params[:accuracy] || 5).to_f * 0.01 # 0.1 will need fine-tuning later
+    range_in_degrees = (params[:accuracy] || 500).to_f * 0.01 # 0.1 will need fine-tuning later
     if params[:lat].to_f == 0.0 && params[:lon].to_f == 0.0
       render json: {message: 'Position data required'}, status: 404
     else
