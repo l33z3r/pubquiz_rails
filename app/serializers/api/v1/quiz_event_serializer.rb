@@ -5,7 +5,8 @@ class Api::V1::QuizEventSerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :time_zone, :starts_at, :logo_url,
              :open_to_the_public, :in_dst, :venue_id
 
-  has_many :quiz_rounds, serializer: Api::V1::QuizRoundsSerializer
+  #lee had to comment this out to get it working
+  # has_many :quiz_rounds, serializer: Api::V1::QuizRoundsSerializer
 
   def starts_at
     object.starts_at.to_i

@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     self.uid == '10152680945978307' || self.email == 'lee.farrell6@mail.dcu.ie'
   end
 
-  def event_team_member_id
+  def event_team_member
     self.event_team_members.last.try(:id)
   end
 
