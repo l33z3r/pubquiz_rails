@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
-gem 'rails', '4.1.6'
+ruby '2.2.2'
+gem 'rails', '4.2.1'
 
 # Gems for all environments:
 gem 'active_model_serializers', '~> 0.8.0' # 0.9 is not ready for prime-time
